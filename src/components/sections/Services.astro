@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import ServiceCard from '../ui/ServiceCard.astro';
+
+const services = await getCollection('services');
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="services" class="py-24 bg-brand-bg">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl sm:text-4xl font-black text-brand-gray text-center mb-4">
+      Services
+    </h2>
+    <p class="text-xl text-brand-gray/70 text-center mb-16 max-w-2xl mx-auto">
+      Three ways I can help your AI initiative succeed
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {sortedServices.map((service, index) => (
+        <ServiceCard service={service.data} delay={index * 150} />
+      ))}
+    </div>
+  </div>
+</section>
