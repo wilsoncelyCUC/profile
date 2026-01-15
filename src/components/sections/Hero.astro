@@ -1,0 +1,55 @@
+---
+import { siteConfig } from '../../data/site-config';
+
+const { hero } = siteConfig;
+---
+
+<section
+  id="hero"
+  class="min-h-screen flex items-center justify-center bg-brand-bg pt-16"
+  x-data="{ show: false }"
+  x-init="setTimeout(() => show = true, 100)"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1
+      x-show="show"
+      x-transition:enter="transition ease-out duration-700"
+      x-transition:enter-start="opacity-0 transform translate-y-8"
+      x-transition:enter-end="opacity-100 transform translate-y-0"
+      class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-gray leading-tight mb-6"
+    >
+      {hero.headline}
+    </h1>
+
+    <p
+      x-show="show"
+      x-transition:enter="transition ease-out duration-700 delay-200"
+      x-transition:enter-start="opacity-0 transform translate-y-8"
+      x-transition:enter-end="opacity-100 transform translate-y-0"
+      class="text-xl sm:text-2xl text-brand-gray/80 mb-10 max-w-3xl mx-auto"
+    >
+      {hero.subheadline}
+    </p>
+
+    <div
+      x-show="show"
+      x-transition:enter="transition ease-out duration-700 delay-400"
+      x-transition:enter-start="opacity-0 transform translate-y-8"
+      x-transition:enter-end="opacity-100 transform translate-y-0"
+      class="flex flex-col sm:flex-row gap-4 justify-center"
+    >
+      <a
+        href={hero.primaryCta.href}
+        class="inline-block bg-brand-green text-white px-8 py-4 rounded font-bold text-lg hover:bg-black transition-colors"
+      >
+        {hero.primaryCta.text}
+      </a>
+      <a
+        href={hero.secondaryCta.href}
+        class="inline-block border-2 border-brand-gray text-brand-gray px-8 py-4 rounded font-bold text-lg hover:bg-brand-gray hover:text-white transition-colors"
+      >
+        {hero.secondaryCta.text}
+      </a>
+    </div>
+  </div>
+</section>

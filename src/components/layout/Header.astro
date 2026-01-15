@@ -1,0 +1,90 @@
+---
+import { siteConfig } from '../../data/site-config';
+
+const navItems = [
+  { label: 'Value', href: '#pillars' },
+  { label: 'Services', href: '#services' },
+  { label: 'Proof', href: '#proof' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header
+  x-data="{ scrolled: false, mobileMenuOpen: false }"
+  x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })"
+  :class="{ 'bg-white shadow-md': scrolled, 'bg-transparent': !scrolled }"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo/Name -->
+      <a href="#hero" class="text-brand-gray font-bold text-xl">
+        Wilson Cely
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-brand-gray hover:text-brand-green transition-colors font-medium"
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="#contact"
+          class="bg-brand-green text-white px-6 py-2 rounded font-semibold hover:bg-black transition-colors"
+        >
+          {siteConfig.hero.primaryCta.text}
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        @click="mobileMenuOpen = !mobileMenuOpen"
+        class="md:hidden text-brand-gray"
+        aria-label="Toggle menu"
+      >
+        <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      x-show="mobileMenuOpen"
+      x-cloak
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 -translate-y-2"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-2"
+      class="md:hidden bg-white border-t shadow-lg"
+    >
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            @click="mobileMenuOpen = false"
+            class="block px-3 py-2 text-brand-gray hover:text-brand-green transition-colors"
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="#contact"
+          @click="mobileMenuOpen = false"
+          class="block px-3 py-2 mt-2 bg-brand-green text-white rounded text-center font-semibold"
+        >
+          {siteConfig.hero.primaryCta.text}
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
