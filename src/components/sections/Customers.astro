@@ -1,0 +1,81 @@
+---
+// Dynamic customer logo slideshow
+// Add logo files to /public/images/customers/ folder
+// Supported formats: .png, .jpg, .jpeg, .svg, .webp
+
+import { readdir } from 'node:fs/promises';
+import { join } from 'node:path';
+
+const customersDir = join(process.cwd(), 'public/images/customers');
+let logos: string[] = [];
+
+try {
+  const files = await readdir(customersDir);
+  logos = files
+    .filter(file => /\.(png|jpg|jpeg|svg|webp)$/i.test(file))
+    .map(file => `/profile/images/customers/${file}`);
+} catch (error) {
+  // Folder doesn't exist or is empty
+  logos = [];
+}
+
+// Duplicate logos for seamless infinite scroll
+const duplicatedLogos = [...logos, ...logos];
+---
+
+{logos.length > 0 ? (
+  <section id="customers" class="py-16 bg-white overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-text-dark text-center mb-4">
+        Trusted By
+      </h2>
+      <p class="text-lg text-text-dark/60 text-center mb-12">
+        Companies I've helped succeed with AI
+      </p>
+    </div>
+
+    <div class="relative">
+      <!-- Gradient overlays for fade effect -->
+      <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+      <!-- Scrolling container -->
+      <div class="flex animate-scroll">
+        {duplicatedLogos.map((logo, index) => (
+          <div class="flex-shrink-0 mx-12 flex items-center justify-center" style="min-width: 220px;">
+            <img
+              src={logo}
+              alt="Customer logo"
+              class="h-[70px] w-auto max-w-[200px] object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+) : (
+  <!-- Placeholder when no logos exist -->
+  <section id="customers" class="py-16 bg-white hidden">
+    <p class="text-center text-gray-400">Add logos to /public/images/customers/</p>
+  </section>
+)}
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+</style>
