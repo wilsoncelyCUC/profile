@@ -2,12 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #2BA8A3;
+  --color-primary-light: #B3E9E6;
+  --color-text-dark: #1F2937;
+  --color-bg-light: #F9FAFB;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 @layer base {
   body {
-    @apply text-brand-gray bg-brand-bg;
+    @apply text-text-dark bg-bg-light;
   }
 }

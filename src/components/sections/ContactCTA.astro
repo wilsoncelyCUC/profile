@@ -7,7 +7,7 @@ const { contact } = siteConfig;
 const mailtoHref = `mailto:${contact.email}?subject=${encodeURIComponent('Inquiry: AI Value Delivery Services')}&body=${encodeURIComponent('Hi Wilson,\n\nI am interested in discussing how you can help with my AI initiative.\n\nBest regards,')}`;
 ---
 
-<section id="contact" class="py-24 bg-brand-gray">
+<section id="contact" class="py-24 bg-text-dark">
   <div
     class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
     x-data="{ visible: false }"
@@ -24,7 +24,7 @@ const mailtoHref = `mailto:${contact.email}?subject=${encodeURIComponent('Inquir
 
     <a
       href={mailtoHref}
-      class="inline-block bg-brand-green text-white px-10 py-4 rounded font-bold text-lg hover:bg-white hover:text-brand-gray transition-colors shadow-lg hover:shadow-xl"
+      class="inline-block bg-primary text-white px-10 py-4 rounded font-bold text-lg hover:bg-primary-light hover:text-text-dark transition-colors shadow-lg hover:shadow-xl"
     >
       {contact.ctaText}
     </a>
@@ -34,7 +34,7 @@ const mailtoHref = `mailto:${contact.email}?subject=${encodeURIComponent('Inquir
     <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="max-w-md mx-auto mt-8">
       <input type="email" name="email" placeholder="Your email" required class="w-full px-4 py-3 rounded mb-4" />
       <textarea name="message" placeholder="Your message" rows="4" required class="w-full px-4 py-3 rounded mb-4"></textarea>
-      <button type="submit" class="w-full bg-brand-green text-white px-6 py-3 rounded font-bold">Send</button>
+      <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded font-bold">Send</button>
     </form>
     -->
   </div>

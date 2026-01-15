@@ -6,50 +6,89 @@ const { hero } = siteConfig;
 
 <section
   id="hero"
-  class="min-h-screen flex items-center justify-center bg-brand-bg pt-16"
+  class="min-h-screen flex items-center pt-20 pb-12 overflow-hidden relative"
+  style="background: linear-gradient(135deg, #B3E9E6 0%, #F9FAFB 50%, #B3E9E6 100%);"
   x-data="{ show: false }"
   x-init="setTimeout(() => show = true, 100)"
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h1
-      x-show="show"
-      x-transition:enter="transition ease-out duration-700"
-      x-transition:enter-start="opacity-0 transform translate-y-8"
-      x-transition:enter-end="opacity-100 transform translate-y-0"
-      class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-gray leading-tight mb-6"
-    >
-      {hero.headline}
-    </h1>
+  <!-- Decorative background shapes -->
+  <div class="absolute top-20 left-10 w-16 h-16 bg-primary/10 rounded-full blur-xl"></div>
+  <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-primary-light/50 rounded-full blur-2xl"></div>
+  <div class="absolute top-1/3 right-10 w-20 h-20 bg-primary/10 rounded-full blur-xl"></div>
 
-    <p
-      x-show="show"
-      x-transition:enter="transition ease-out duration-700 delay-200"
-      x-transition:enter-start="opacity-0 transform translate-y-8"
-      x-transition:enter-end="opacity-100 transform translate-y-0"
-      class="text-xl sm:text-2xl text-brand-gray/80 mb-10 max-w-3xl mx-auto"
-    >
-      {hero.subheadline}
-    </p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left column: Text content -->
+      <div
+        x-show="show"
+        x-transition:enter="transition ease-out duration-700"
+        x-transition:enter-start="opacity-0 transform -translate-x-8"
+        x-transition:enter-end="opacity-100 transform translate-x-0"
+      >
+        <h1 class="text-4xl sm:text-5xl lg:text-5xl font-black text-text-dark leading-tight mb-6">
+          {hero.headline}
+        </h1>
 
-    <div
-      x-show="show"
-      x-transition:enter="transition ease-out duration-700 delay-400"
-      x-transition:enter-start="opacity-0 transform translate-y-8"
-      x-transition:enter-end="opacity-100 transform translate-y-0"
-      class="flex flex-col sm:flex-row gap-4 justify-center"
-    >
-      <a
-        href={hero.primaryCta.href}
-        class="inline-block bg-brand-green text-white px-8 py-4 rounded font-bold text-lg hover:bg-black transition-colors"
+        <p class="text-lg sm:text-xl text-text-dark/70 mb-8 max-w-xl">
+          {hero.subheadline}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-10">
+          <a
+            href={hero.primaryCta.href}
+            class="inline-block bg-primary text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-text-dark transition-colors shadow-lg hover:shadow-xl"
+          >
+            {hero.primaryCta.text}
+          </a>
+          <a
+            href={hero.secondaryCta.href}
+            class="inline-block border-2 border-text-dark text-text-dark px-8 py-4 rounded-lg font-bold text-lg hover:bg-text-dark hover:text-white transition-colors"
+          >
+            {hero.secondaryCta.text}
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex flex-wrap gap-4">
+          <div class="bg-white/80 backdrop-blur-sm border border-primary-light rounded-lg px-6 py-4 text-center">
+            <div class="text-2xl font-black text-primary">10+</div>
+            <div class="text-sm text-text-dark/60">Years Experience</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur-sm border border-primary-light rounded-lg px-6 py-4 text-center">
+            <div class="text-2xl font-black text-primary">50+</div>
+            <div class="text-sm text-text-dark/60">Projects Delivered</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur-sm border border-primary-light rounded-lg px-6 py-4 text-center">
+            <div class="text-2xl font-black text-primary">$M+</div>
+            <div class="text-sm text-text-dark/60">Value Generated</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: Image -->
+      <div
+        x-show="show"
+        x-transition:enter="transition ease-out duration-700 delay-300"
+        x-transition:enter-start="opacity-0 transform translate-x-8"
+        x-transition:enter-end="opacity-100 transform translate-x-0"
+        class="relative flex justify-center lg:justify-end"
       >
-        {hero.primaryCta.text}
-      </a>
-      <a
-        href={hero.secondaryCta.href}
-        class="inline-block border-2 border-brand-gray text-brand-gray px-8 py-4 rounded font-bold text-lg hover:bg-brand-gray hover:text-white transition-colors"
-      >
-        {hero.secondaryCta.text}
-      </a>
+        <!-- Decorative elements around image -->
+        <div class="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-lg rotate-12 opacity-60"></div>
+        <div class="absolute top-1/4 -left-6 w-6 h-6 bg-primary-light rounded-full"></div>
+        <div class="absolute bottom-1/4 -right-8 w-10 h-10 bg-primary/20 rounded-lg rotate-45"></div>
+        <div class="absolute -bottom-4 left-1/4 w-8 h-8 bg-primary-light rounded-full opacity-80"></div>
+
+        <!-- Image container -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-light rounded-2xl transform rotate-3 scale-105 opacity-20"></div>
+          <img
+            src="/profile/images/wilson-hero.jpeg"
+            alt="Wilson Cely"
+            class="relative rounded-2xl shadow-2xl w-full max-w-md lg:max-w-lg object-cover"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </section>

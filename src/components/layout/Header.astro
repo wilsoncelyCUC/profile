@@ -18,7 +18,7 @@ const navItems = [
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo/Name -->
-      <a href="#hero" class="text-brand-gray font-bold text-xl">
+      <a href="#hero" class="text-text-dark font-bold text-xl">
         Wilson Cely
       </a>
 
@@ -27,14 +27,14 @@ const navItems = [
         {navItems.map((item) => (
           <a
             href={item.href}
-            class="text-brand-gray hover:text-brand-green transition-colors font-medium"
+            class="text-text-dark hover:text-primary transition-colors font-medium"
           >
             {item.label}
           </a>
         ))}
         <a
           href="#contact"
-          class="bg-brand-green text-white px-6 py-2 rounded font-semibold hover:bg-black transition-colors"
+          class="bg-primary text-white px-6 py-2 rounded font-semibold hover:bg-text-dark transition-colors"
         >
           {siteConfig.hero.primaryCta.text}
         </a>
@@ -43,7 +43,7 @@ const navItems = [
       <!-- Mobile Menu Button -->
       <button
         @click="mobileMenuOpen = !mobileMenuOpen"
-        class="md:hidden text-brand-gray"
+        class="md:hidden text-text-dark"
         aria-label="Toggle menu"
       >
         <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@ const navItems = [
           <a
             href={item.href}
             @click="mobileMenuOpen = false"
-            class="block px-3 py-2 text-brand-gray hover:text-brand-green transition-colors"
+            class="block px-3 py-2 text-text-dark hover:text-primary transition-colors"
           >
             {item.label}
           </a>
@@ -80,7 +80,7 @@ const navItems = [
         <a
           href="#contact"
           @click="mobileMenuOpen = false"
-          class="block px-3 py-2 mt-2 bg-brand-green text-white rounded text-center font-semibold"
+          class="block px-3 py-2 mt-2 bg-primary text-white rounded text-center font-semibold"
         >
           {siteConfig.hero.primaryCta.text}
         </a>
