@@ -3,10 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #2BA8A3;
-  --color-primary-light: #B3E9E6;
-  --color-text-dark: #1F2937;
-  --color-bg-light: #F9FAFB;
+  --primary: #2BA8A3;        /* Teal - CTAs, accents */
+  --primary-light: #B3E9E6;  /* Mint - backgrounds, tints */
+  --text-dark: #1F2937;      /* Dark gray - all text */
+  --bg-light: #F9FAFB;       /* Light gray - backgrounds */
+  --white: #FFFFFF;          /* Pure white - cards, buttons */
+
+  /* Legacy names for compatibility */
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-text-dark: var(--text-dark);
+  --color-bg-light: var(--bg-light);
 }
 
 html {

@@ -1,15 +1,18 @@
 ---
-title: AI Innovation and Use Case Prioritization Sprint
+title: AI Use Case Prioritization
 slug: ai-innovation-sprint
 order: 2
+icon: lightbulb
+hook: Too many AI ideas. Zero alignment.
+tagline: Find what's worth building first
 bestFor: Many AI ideas. No alignment on what is worth doing first.
-outcome: Shortlist of use cases ranked by value and feasibility. Exec-ready narrative.
+outcome: Ranked roadmap of AI use cases by value and feasibility. Exec-ready business case.
 deliverables:
-  - Workshops
-  - Feasibility screen (data, integration, risk, effort)
-  - Value driver mapping (cost, revenue, risk)
-  - Prioritized roadmap with decision gates
-format: Sprint engagement
+  - Feasibility workshops
+  - Value driver mapping
+  - Prioritized roadmap
+  - Decision gate framework
+format: Sprint engagement (2-3 weeks)
 ctaText: Request scope
 ---
 

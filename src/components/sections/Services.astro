@@ -15,9 +15,12 @@ const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
       Three ways I can help your AI initiative succeed
     </p>
 
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
       {sortedServices.map((service, index) => (
-        <ServiceCard service={service.data} delay={index * 150} />
+        <ServiceCard
+          service={service.data}
+          delay={index * 150}
+        />
       ))}
     </div>
   </div>

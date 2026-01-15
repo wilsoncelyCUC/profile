@@ -4,10 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': '#2BA8A3',
-        'primary-light': '#B3E9E6',
-        'text-dark': '#1F2937',
-        'bg-light': '#F9FAFB',
+        'primary': 'var(--primary)',
+        'primary-light': 'var(--primary-light)',
+        'text-dark': 'var(--text-dark)',
+        'bg-light': 'var(--bg-light)',
+        'white': 'var(--white)',
       },
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],

@@ -1,17 +1,18 @@
 ---
-title: AI Delivery Lead (Fractional PM)
+title: AI Delivery Lead
 slug: ai-delivery-lead
 order: 1
+icon: rocket
+hook: You picked an AI initiative. We'll ship it.
+tagline: From idea to production
 bestFor: You already picked an AI initiative. You need execution to production.
-outcome: Delivery that sticks. Clear scope, cadence, risks managed, launch readiness.
+outcome: Launch-ready AI that sticks. Clear scope, managed risks, stakeholder buy-in.
 deliverables:
-  - Milestone plan
-  - Backlog and governance
-  - Risk register
+  - Milestone plan & backlog
+  - Risk register & mitigation
   - Stakeholder alignment
   - Production readiness checklist
-  - Rollout plan
-format: Fractional engagement (days per week configurable)
+format: Fractional (configurable days/week)
 ctaText: Request scope
 ---
 
