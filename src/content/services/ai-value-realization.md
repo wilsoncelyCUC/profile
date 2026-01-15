@@ -1,15 +1,18 @@
 ---
-title: AI Value Realization System (KPI and ROI Proof)
+title: AI Value Realization
 slug: ai-value-realization
 order: 3
+icon: trending-up
+hook: "You launched AI. Leadership asks: 'What did we get?'"
+tagline: Prove ROI, protect budget
 bestFor: You launched or piloted AI. Leadership asks "what did we get".
-outcome: Measurable value reporting that protects budget and enables expansion.
+outcome: Measurable value reporting that justifies investment and enables expansion.
 deliverables:
-  - KPI tree linking technical metrics to business outcomes
-  - Baseline and measurement plan (definitions, sources, owners)
-  - First value realization report (projected vs actual)
+  - KPI tree (tech → business)
+  - Measurement plan with owners
+  - First value realization report
   - QBR template focused on outcomes
-format: Setup phase plus optional monthly cadence
+format: Setup + optional monthly cadence
 ctaText: Request scope
 ---
 
