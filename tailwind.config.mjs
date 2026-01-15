@@ -4,9 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-gray': '#575F7D',
-        'brand-green': '#0abf53',
-        'brand-bg': '#F7F9FC',
+        'primary': '#2BA8A3',
+        'primary-light': '#B3E9E6',
+        'text-dark': '#1F2937',
+        'bg-light': '#F9FAFB',
       },
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],

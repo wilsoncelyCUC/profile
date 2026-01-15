@@ -10,10 +10,10 @@ const sortedCaseStudies = caseStudies
 
 <section id="proof" class="py-24 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl sm:text-4xl font-black text-brand-gray text-center mb-4">
+    <h2 class="text-3xl sm:text-4xl font-black text-text-dark text-center mb-4">
       Proof
     </h2>
-    <p class="text-xl text-brand-gray/70 text-center mb-16 max-w-2xl mx-auto">
+    <p class="text-xl text-text-dark/70 text-center mb-16 max-w-2xl mx-auto">
       Real outcomes from real engagements
     </p>
 
@@ -28,10 +28,10 @@ const sortedCaseStudies = caseStudies
         x-data="{ visible: false }"
         x-intersect:enter="visible = true"
         :class="{ 'opacity-100 translate-y-0': visible, 'opacity-0 translate-y-8': !visible }"
-        class="text-center py-12 bg-brand-bg rounded-lg transition-all duration-700"
+        class="text-center py-12 bg-bg-light rounded-lg transition-all duration-700 border border-primary-light"
       >
-        <p class="text-brand-gray/60 text-lg">Case studies coming soon.</p>
-        <p class="text-brand-gray/50 mt-2">
+        <p class="text-text-dark/60 text-lg">Case studies coming soon.</p>
+        <p class="text-text-dark/50 mt-2">
           Contact me to discuss how I've helped similar organizations.
         </p>
       </div>
