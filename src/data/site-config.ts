@@ -68,6 +68,45 @@ export const siteConfig = {
     ],
   },
 
+  thoughtLeadership: {
+    badge: 'IN THE ARENA',
+    headline: 'Where Strategy Meets Action',
+    subheadline: 'Join the conversation at the intersection of technology, business, and execution.',
+    newsletter: {
+      title: 'AI Rebv Hub',
+      tagline: 'Strategic AI insights for practitioners',
+      description: 'Bridging the gap between high-level strategy and production reality. No fluff—just battle-tested insights from someone who ships.',
+      subscribers: '15,000+',
+      subscribersShort: '15K+',
+      link: 'https://www.ai-revolution-hub.com/',
+      latestPosts: [
+        {
+          title: 'When authorship stops being enough',
+          link: 'https://www.ai-revolution-hub.com/',
+        },
+        {
+          title: 'Llama 3.1: Open-source AI Strategy',
+          link: 'https://www.ai-revolution-hub.com/',
+        },
+      ],
+    },
+    community: {
+      title: 'Munich MLOps Community',
+      members: '40,000+',
+      membersShort: '40K+',
+      description: 'Where practitioners share wins, failures, and everything in between.',
+      link: 'https://lu.ma/munich-mlops',
+    },
+    event: {
+      title: 'Munich MLOps Meetup #21',
+      date: 'Jan 28, 2026',
+      description: 'Gen AI at Scale: From Lambda Struggles to Bedrock Agents',
+      spotsLeft: '4 spots left',
+      link: 'https://lu.ma/munich-mlops?e=calev-ddS9tD5XOnzMJM4',
+    },
+    philosophy: 'AI moves at two speeds: the speed of research and the speed of production. We live in the second.',
+  },
+
   contact: {
     headline: 'Ready to bridge the gap?',
     subheadline: "Let's discuss how I can help your AI initiative succeed.",

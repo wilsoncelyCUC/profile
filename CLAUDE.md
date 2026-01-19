@@ -74,6 +74,13 @@ GitHub Actions workflow (`.github/workflows/deploy.yml`) builds and deploys to G
 - Alpine.js handles scroll reveal animations and mobile menu
 - Content collections use Zod schemas for type safety
 
+## Documentation Reference
+
+Use Context7 MCP server to check up-to-date documentation when:
+- Implementing new libraries or frameworks
+- Adding features using existing dependencies
+- Verifying correct API usage and best practices
+
 ## Git Branches
 
 - `layout` - Development branch
