@@ -12,8 +12,8 @@ export const siteConfig = {
       href: '#contact',
     },
     secondaryCta: {
-      text: 'See case studies',
-      href: '#proof',
+      text: 'See services',
+      href: '#services',
     },
   },
 
