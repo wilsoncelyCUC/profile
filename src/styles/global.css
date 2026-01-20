@@ -9,6 +9,16 @@
   --bg-light: #F9FAFB;       /* Light gray - backgrounds */
   --white: #FFFFFF;          /* Pure white - cards, buttons */
 
+  /* Variant colors */
+  --secondary: #6B7280;      /* Gray - secondary actions */
+  --secondary-light: #E5E7EB;
+  --success: #10B981;        /* Green - success states */
+  --success-light: #D1FAE5;
+  --danger: #EF4444;         /* Red - danger/error states */
+  --danger-light: #FEE2E2;
+  --warning: #F59E0B;        /* Amber - warning states */
+  --warning-light: #FEF3C7;
+
   /* Legacy names for compatibility */
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);

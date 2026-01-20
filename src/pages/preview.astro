@@ -1,0 +1,236 @@
+---
+/**
+ * Component Preview Page
+ * A showcase page for UI components - used by ui-ux-reviewer agent
+ * and for manual component testing.
+ *
+ * URL: /profile/preview
+ */
+import BaseHead from '../components/layout/BaseHead.astro';
+import Modal from '../components/ui/Modal/Modal.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Component Preview"
+      description="UI component showcase and testing page"
+    />
+  </head>
+  <body class="min-h-screen bg-bg-light">
+    <!-- Header -->
+    <header class="bg-white border-b border-secondary-light sticky top-0 z-10">
+      <div class="max-w-6xl mx-auto px-6 py-4">
+        <h1 class="text-2xl font-bold text-text-dark">Component Preview</h1>
+        <p class="text-sm text-gray-500">UI component showcase for testing and review</p>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-8 space-y-16">
+
+      <!-- ===========================================
+           MODAL COMPONENT
+           =========================================== -->
+      <section id="modal" class="scroll-mt-20">
+        <div class="mb-6">
+          <h2 class="text-xl font-bold text-text-dark mb-2">Modal</h2>
+          <p class="text-gray-600">A clean, modern modal with semi-transparent backdrop and WCAG AA accessibility compliance.</p>
+        </div>
+
+        <!-- Variants -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
+          <h3 class="text-lg font-semibold text-text-dark mb-4">Variants</h3>
+          <div class="flex flex-wrap gap-3">
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-primary' })"
+              class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Primary
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-secondary' })"
+              class="px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary/90 transition-colors"
+            >
+              Secondary
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-success' })"
+              class="px-4 py-2 bg-success text-white rounded-lg hover:bg-success/90 transition-colors"
+            >
+              Success
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-danger' })"
+              class="px-4 py-2 bg-danger text-white rounded-lg hover:bg-danger/90 transition-colors"
+            >
+              Danger
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-warning' })"
+              class="px-4 py-2 bg-warning text-white rounded-lg hover:bg-warning/90 transition-colors"
+            >
+              Warning
+            </button>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
+          <h3 class="text-lg font-semibold text-text-dark mb-4">Sizes</h3>
+          <div class="flex flex-wrap gap-3">
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-sm' })"
+              class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Small (sm)
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-md' })"
+              class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Medium (md)
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-lg' })"
+              class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Large (lg)
+            </button>
+          </div>
+        </div>
+
+        <!-- Special Cases -->
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-text-dark mb-4">Special Cases</h3>
+          <div class="flex flex-wrap gap-3">
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-no-close' })"
+              class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+            >
+              No Close Button
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-no-backdrop-close' })"
+              class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+            >
+              No Backdrop Close
+            </button>
+            <button
+              x-data
+              @click="$dispatch('modal-open', { id: 'modal-with-footer' })"
+              class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+            >
+              With Footer Actions
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Instances -->
+        <Modal id="modal-primary" title="Primary Modal" variant="primary">
+          <p>This is a primary variant modal. It uses the teal accent color that matches the site's primary theme.</p>
+        </Modal>
+
+        <Modal id="modal-secondary" title="Secondary Modal" variant="secondary">
+          <p>This is a secondary variant modal. It uses a neutral gray accent color for less prominent actions.</p>
+        </Modal>
+
+        <Modal id="modal-success" title="Success Modal" variant="success">
+          <p>This is a success variant modal. Use it to confirm successful operations or positive feedback.</p>
+        </Modal>
+
+        <Modal id="modal-danger" title="Danger Modal" variant="danger">
+          <p>This is a danger variant modal. Use it for destructive actions or error confirmations.</p>
+        </Modal>
+
+        <Modal id="modal-warning" title="Warning Modal" variant="warning">
+          <p>This is a warning variant modal. Use it for cautionary messages or important alerts.</p>
+        </Modal>
+
+        <Modal id="modal-sm" title="Small Modal" size="sm">
+          <p>This is a small modal (max-width: 384px). Good for simple confirmations.</p>
+        </Modal>
+
+        <Modal id="modal-md" title="Medium Modal" size="md">
+          <p>This is a medium modal (max-width: 448px). This is the default size, suitable for most use cases.</p>
+        </Modal>
+
+        <Modal id="modal-lg" title="Large Modal" size="lg">
+          <p>This is a large modal (max-width: 672px). Perfect for forms or more complex content.</p>
+          <div class="mt-4 p-4 bg-bg-light rounded-lg">
+            <h3 class="font-semibold mb-2">Sample Form</h3>
+            <div class="space-y-3">
+              <input type="text" placeholder="Name" class="w-full px-3 py-2 border border-secondary-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+              <input type="email" placeholder="Email" class="w-full px-3 py-2 border border-secondary-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+              <textarea placeholder="Message" rows="3" class="w-full px-3 py-2 border border-secondary-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+            </div>
+          </div>
+        </Modal>
+
+        <Modal id="modal-no-close" title="Modal Without Close Button" showCloseButton={false}>
+          <p>This modal has no close button. You can only close it by clicking the backdrop or pressing Escape.</p>
+        </Modal>
+
+        <Modal id="modal-no-backdrop-close" title="No Backdrop Close" closeOnBackdrop={false}>
+          <p>Clicking the backdrop won't close this modal. You must use the close button or press Escape.</p>
+        </Modal>
+
+        <Modal id="modal-with-footer" title="Confirm Deletion" variant="danger">
+          <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+          <Fragment slot="footer">
+            <div class="flex justify-end gap-3 px-6 py-4 bg-bg-light border-t border-secondary-light">
+              <button
+                x-data
+                @click="$dispatch('modal-close', { id: 'modal-with-footer' })"
+                class="px-4 py-2 text-secondary hover:bg-secondary-light rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                x-data
+                @click="$dispatch('modal-close', { id: 'modal-with-footer' })"
+                class="px-4 py-2 bg-danger text-white rounded-lg hover:bg-danger/90 transition-colors"
+              >
+                Delete
+              </button>
+            </div>
+          </Fragment>
+        </Modal>
+      </section>
+
+      <!-- ===========================================
+           ADD MORE COMPONENTS HERE
+           =========================================== -->
+      <!--
+      <section id="button" class="scroll-mt-20">
+        <div class="mb-6">
+          <h2 class="text-xl font-bold text-text-dark mb-2">Button</h2>
+          <p class="text-gray-600">Description of the button component.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-sm">
+          // Button examples here
+        </div>
+      </section>
+      -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-secondary-light mt-16 py-6">
+      <div class="max-w-6xl mx-auto px-6 text-center text-sm text-gray-500">
+        Component Preview Page - For development and UI/UX review
+      </div>
+    </footer>
+  </body>
+</html>
