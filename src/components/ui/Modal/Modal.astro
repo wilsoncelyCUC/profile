@@ -1,0 +1,300 @@
+---
+/**
+ * Modal Component (Accessibility Enhanced)
+ * A clean, modern modal with WCAG AA compliance
+ *
+ * Usage:
+ * <Modal id="my-modal" title="Modal Title" variant="primary" size="md">
+ *   <p>Modal content goes here</p>
+ * </Modal>
+ *
+ * To open/close from outside:
+ * - Alpine.js: @click="$dispatch('modal-open', { id: 'my-modal' })"
+ * - Alpine.js: @click="$dispatch('modal-close', { id: 'my-modal' })"
+ */
+
+export interface Props {
+  id: string;
+  title?: string;
+  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+  size?: 'sm' | 'md' | 'lg';
+  showCloseButton?: boolean;
+  closeOnBackdrop?: boolean;
+  closeOnEscape?: boolean;
+}
+
+const {
+  id,
+  title,
+  variant = 'primary',
+  size = 'md',
+  showCloseButton = true,
+  closeOnBackdrop = true,
+  closeOnEscape = true,
+} = Astro.props;
+
+// Size classes for modal width
+const sizeClasses = {
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-2xl',
+};
+
+// Variant classes for header accent
+// FIXED: Titles now use dark gray for AA contrast compliance
+const variantClasses = {
+  primary: {
+    header: 'border-b-2 border-primary',
+    title: 'text-gray-900',
+    closeBtn: 'text-gray-600 hover:bg-primary-light',
+    closeBtnFocus: 'focus:ring-primary',
+  },
+  secondary: {
+    header: 'border-b-2 border-secondary',
+    title: 'text-gray-900',
+    closeBtn: 'text-gray-600 hover:bg-secondary-light',
+    closeBtnFocus: 'focus:ring-secondary',
+  },
+  success: {
+    header: 'border-b-2 border-success',
+    title: 'text-gray-900',
+    closeBtn: 'text-gray-600 hover:bg-success-light',
+    closeBtnFocus: 'focus:ring-success',
+  },
+  danger: {
+    header: 'border-b-2 border-danger',
+    title: 'text-gray-900',
+    closeBtn: 'text-gray-600 hover:bg-danger-light',
+    closeBtnFocus: 'focus:ring-danger',
+  },
+  warning: {
+    header: 'border-b-2 border-warning',
+    title: 'text-gray-900',
+    closeBtn: 'text-gray-600 hover:bg-warning-light',
+    closeBtnFocus: 'focus:ring-warning',
+  },
+};
+
+const currentSize = sizeClasses[size];
+const currentVariant = variantClasses[variant];
+---
+
+<div
+  x-data={`{
+    open: false,
+    modalId: '${id}',
+    closeOnBackdrop: ${closeOnBackdrop},
+    closeOnEscape: ${closeOnEscape},
+    focusTrapHandler: null,
+
+    init() {
+      // Listen for open events
+      window.addEventListener('modal-open', (e) => {
+        if (e.detail?.id === this.modalId) {
+          this.openModal();
+        }
+      });
+
+      // Listen for close events
+      window.addEventListener('modal-close', (e) => {
+        if (e.detail?.id === this.modalId) {
+          this.closeModal();
+        }
+      });
+
+      // Watch for open state to manage focus trap
+      this.$watch('open', (isOpen) => {
+        if (isOpen) {
+          this.$nextTick(() => {
+            this.trapFocus();
+          });
+        } else {
+          this.releaseFocusTrap();
+        }
+      });
+    },
+
+    openModal() {
+      this.open = true;
+      document.body.style.overflow = 'hidden';
+      this.$nextTick(() => {
+        this.$refs.modal?.focus();
+      });
+    },
+
+    closeModal() {
+      this.open = false;
+      document.body.style.overflow = '';
+    },
+
+    handleBackdropClick() {
+      if (this.closeOnBackdrop) {
+        this.closeModal();
+      }
+    },
+
+    handleEscape(e) {
+      if (this.closeOnEscape && e.key === 'Escape') {
+        this.closeModal();
+      }
+    },
+
+    // Focus trap implementation for accessibility
+    trapFocus() {
+      const modalPanel = this.$refs.modalPanel;
+      if (!modalPanel) return;
+
+      const focusableElements = modalPanel.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      // Focus first element
+      firstElement.focus();
+
+      // Create and store the handler so we can remove it later
+      this.focusTrapHandler = (e) => {
+        if (e.key !== 'Tab') return;
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      };
+
+      modalPanel.addEventListener('keydown', this.focusTrapHandler);
+    },
+
+    releaseFocusTrap() {
+      const modalPanel = this.$refs.modalPanel;
+      if (modalPanel && this.focusTrapHandler) {
+        modalPanel.removeEventListener('keydown', this.focusTrapHandler);
+        this.focusTrapHandler = null;
+      }
+    }
+  }`}
+  x-on:keydown.escape.window="handleEscape($event)"
+  class="modal-container"
+  data-modal-id={id}
+>
+  <!-- Backdrop -->
+  <div
+    x-show="open"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    x-on:click="handleBackdropClick()"
+    class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Modal Panel -->
+  <div
+    x-show="open"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 scale-95"
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100 scale-100"
+    x-transition:leave-end="opacity-0 scale-95"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby={title ? `${id}-title` : undefined}
+    aria-describedby={`${id}-content`}
+    x-ref="modal"
+    tabindex="-1"
+  >
+    <!-- Screen reader instructions -->
+    <span class="sr-only">Dialog opened. Press Escape to close or use the close button.</span>
+
+    <div
+      x-on:click.stop
+      x-ref="modalPanel"
+      class={`relative w-full ${currentSize} bg-white rounded-xl shadow-2xl overflow-hidden`}
+    >
+      <!-- Header -->
+      {(title || showCloseButton) && (
+        <div class={`flex items-center justify-between px-6 py-4 ${currentVariant.header}`}>
+          {title && (
+            <h2
+              id={`${id}-title`}
+              class={`text-lg font-semibold ${currentVariant.title}`}
+            >
+              {title}
+            </h2>
+          )}
+          {showCloseButton && (
+            <button
+              x-on:click="closeModal()"
+              type="button"
+              title="Close"
+              class={`p-3 md:p-2 rounded-lg transition-colors duration-200 ${currentVariant.closeBtn} focus:outline-none focus:ring-2 focus:ring-offset-2 ${currentVariant.closeBtnFocus}`}
+              aria-label="Close modal"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
+
+      <!-- Body -->
+      <div class="px-6 py-4 text-text-dark" id={`${id}-content`}>
+        <slot />
+      </div>
+
+      <!-- Footer Slot -->
+      <slot name="footer" />
+    </div>
+  </div>
+</div>
+
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    [x-transition],
+    .modal-container [x-transition] {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+
+  /* Screen reader only utility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>
