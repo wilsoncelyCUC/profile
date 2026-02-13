@@ -436,9 +436,22 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
     min-height: 500px;
     max-width: 64rem;
     margin: 0 auto;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 1.5rem;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  /* Visual connector from active scope to panel */
+  .scope-panels::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 1.5rem;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.4) 0%, transparent 100%);
+    opacity: 0.6;
   }
 
   .tabs-nav {
@@ -692,7 +705,7 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
     /* Enhanced Panels Section */
     .scope-panels {
       min-height: auto;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       padding-top: 0;
       border-top: none;
       position: relative;

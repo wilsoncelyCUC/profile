@@ -34,16 +34,56 @@ const bookingUrl = new URL(resolveBookingUrl(siteConfig.bookingUrl));
 bookingUrl.searchParams.set('service', service.slug);
 ---
 
-<article class="v2-card service-card-with-image flex h-full flex-col p-6">
-  <div class="mb-4 flex items-center justify-between gap-3">
+<article class="v2-card service-card-with-image p-6">
+  <div class="card-header mb-4 flex items-center justify-between gap-3">
     <span class="rounded-full border border-sky-400/35 bg-sky-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-200">
       {displayLabel}
     </span>
     <span class="text-xs text-slate-400">{service.format}</span>
   </div>
 
+  <div class="scope-card-content">
+    <h3 class="text-2xl font-semibold text-white">{displayTitle}</h3>
+    <p class="mt-2 text-sm font-semibold text-sky-300">{service.hook}</p>
+    <p class="mt-3 text-sm text-slate-300">{service.tagline}</p>
+
+    <div class="mt-5 space-y-4 text-sm">
+      <div>
+        <p class="font-semibold text-white">Best for</p>
+        <p class="mt-1 text-slate-300">{service.bestFor}</p>
+      </div>
+
+      <div>
+        <p class="font-semibold text-white">Outcome</p>
+        <p class="mt-1 text-slate-300">{service.outcome}</p>
+      </div>
+
+      <div>
+        <p class="font-semibold text-white">What you get</p>
+        <ul class="mt-2 space-y-1.5 text-slate-300">
+          {service.deliverables.map((deliverable) => (
+            <li class="flex gap-2">
+              <span class="mt-2 h-1.5 w-1.5 rounded-full bg-sky-300"></span>
+              <span>{deliverable}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <a
+    href={bookingUrl.toString()}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="card-cta-button v2-btn-primary w-full"
+    aria-label={`Request scope for ${service.title}`}
+  >
+    {service.ctaText}
+  </a>
+
   {scopeNumber && (
-    <div class="scope-image-container mb-5 -mx-6 -mt-2">
+    <div class="scope-image-sidebar">
       <img
         src={`/profile/images/scopes/scope${scopeNumber}.png`}
         alt={`Visual representation of ${displayTitle}`}
@@ -53,53 +93,42 @@ bookingUrl.searchParams.set('service', service.slug);
       <div class="scope-card-image-overlay"></div>
     </div>
   )}
-
-  <h3 class="text-2xl font-semibold text-white">{displayTitle}</h3>
-  <p class="mt-2 text-sm font-semibold text-sky-300">{service.hook}</p>
-  <p class="mt-3 text-sm text-slate-300">{service.tagline}</p>
-
-  <div class="mt-5 space-y-4 text-sm">
-    <div>
-      <p class="font-semibold text-white">Best for</p>
-      <p class="mt-1 text-slate-300">{service.bestFor}</p>
-    </div>
-
-    <div>
-      <p class="font-semibold text-white">Outcome</p>
-      <p class="mt-1 text-slate-300">{service.outcome}</p>
-    </div>
-
-    <div>
-      <p class="font-semibold text-white">What you get</p>
-      <ul class="mt-2 space-y-1.5 text-slate-300">
-        {service.deliverables.map((deliverable) => (
-          <li class="flex gap-2">
-            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-sky-300"></span>
-            <span>{deliverable}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-  <a
-    href={bookingUrl.toString()}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="v2-btn-primary mt-7 w-full"
-    aria-label={`Request scope for ${service.title}`}
-  >
-    {service.ctaText}
-  </a>
 </article>
 
 <style>
-  .scope-image-container {
+  /* Desktop: Grid layout with 30/70 split */
+  .service-card-with-image {
+    background: #000;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0 1.5rem;
+    grid-template-areas:
+      "image header"
+      "image content"
+      "image content"
+      "image button";
+  }
+
+  .card-header {
+    grid-area: header;
+  }
+
+  .scope-card-content {
+    grid-area: content;
+  }
+
+  .card-cta-button {
+    grid-area: button;
+    margin-top: 1.75rem;
+  }
+
+  .scope-image-sidebar {
+    grid-area: image;
     position: relative;
-    width: calc(100% + 3rem);
-    height: 200px;
+    min-height: 280px;
     overflow: hidden;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, rgba(14, 23, 42, 0.9) 0%, rgba(7, 11, 20, 0.95) 100%);
   }
 
@@ -129,9 +158,9 @@ bookingUrl.searchParams.set('service', service.slug);
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(7, 11, 20, 0.4) 0%,
-      rgba(7, 11, 20, 0.85) 70%,
-      rgba(7, 11, 20, 0.95) 100%
+      rgba(7, 11, 20, 0.3) 0%,
+      rgba(7, 11, 20, 0.75) 70%,
+      rgba(7, 11, 20, 0.9) 100%
     );
     pointer-events: none;
   }
@@ -141,21 +170,42 @@ bookingUrl.searchParams.set('service', service.slug);
     position: absolute;
     inset: 0;
     background: radial-gradient(
-      circle at center bottom,
-      rgba(56, 189, 248, 0.12) 0%,
-      transparent 60%
+      circle at center,
+      rgba(56, 189, 248, 0.08) 0%,
+      transparent 70%
     );
   }
 
   .service-card-with-image:hover .scope-card-image {
-    transform: scale(1.02);
+    transform: scale(1.05);
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
+  /* Mobile: Stack vertically with image at the bottom */
   @media (max-width: 768px) {
-    .scope-image-container {
-      height: 160px;
+    .service-card-with-image {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .card-header {
       margin-bottom: 1rem;
+    }
+
+    .scope-card-content {
+      margin-bottom: 0;
+    }
+
+    .card-cta-button {
+      margin-top: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .scope-image-sidebar {
+      width: 100%;
+      min-height: 160px;
+      order: 10; /* Push to the end */
     }
   }
 </style>
