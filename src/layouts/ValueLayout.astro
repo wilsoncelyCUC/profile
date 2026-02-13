@@ -6,25 +6,26 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, canonicalPath } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} canonicalPath={canonicalPath} />
     <style>
       [x-cloak] { display: none !important; }
     </style>
   </head>
-  <body class="font-sans antialiased">
+  <body class="font-sans bg-navy-950 text-slate-200">
     <Header />
     <main>
       <slot />
     </main>
-    <footer class="bg-text-dark text-white/60 py-8 text-center text-sm">
+    <footer class="border-t border-navy-800 bg-navy-950 py-8 text-center text-sm text-slate-400">
       <p>&copy; {new Date().getFullYear()} Wilson Cely. All rights reserved.</p>
     </footer>
   </body>

@@ -1,346 +1,98 @@
 ---
-const pillars = {
-  tech: {
-    label: "Tech",
-    bullets: ["System architecture", "Data pipelines", "ML feasibility"],
-  },
-  business: {
-    label: "Business",
-    bullets: ["TCO modeling", "ROI logic", "Exec narrative"],
-  },
-  delivery: {
-    label: "Delivery",
-    bullets: ["Production execution", "Cross-functional teams", "Launch readiness"],
-  },
+import { siteConfig } from '../../data/site-config';
+
+const [build, ship, prove] = siteConfig.pillars;
+
+const iconPaths: Record<string, string> = {
+  build: 'M10.5 6h3m-7.5 6h15m-18 6h21M3 3h18v18H3V3z',
+  ship: 'M8 17.5h8M12 2v4m7.071 1.929-2.828 2.828M4.929 8.929l2.828 2.828M4 14h16M5 18h14',
+  prove: 'M4 19h16M7 15l3-3 2 2 5-5',
 };
 ---
 
-<section
-  id="pillars"
-  class="py-20 bg-white"
-  aria-label="Bridge connecting technology and business expertise, delivered through production-ready execution"
->
-  <div class="max-w-5xl mx-auto px-6">
-    <!-- Header -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-text-dark mb-2">
-        The Bridge Between Tech and Business
-      </h2>
-      <p class="text-lg text-text-dark/60">
-        Delivered to Production
-      </p>
+<section id="pillars" class="section-shell border-b border-navy-800">
+  <div class="content-shell">
+    <div class="mb-12 text-center">
+      <p class="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">Build · Ship · Prove</p>
+      <h2 class="mt-3 text-3xl font-bold sm:text-4xl">From prototype confidence to production value</h2>
     </div>
 
-    <!-- Bridge Visualization - Desktop -->
-    <div
-      class="hidden lg:block"
-      x-data="{ activePillar: null }"
-    >
-      <div class="relative max-w-3xl mx-auto">
-        <!-- Top Row: Tech - Bridge - Business -->
-        <div class="flex items-end justify-between">
-          <!-- Tech Pillar -->
-          <div
-            class="relative group"
-            @mouseenter="activePillar = 'tech'"
-            @mouseleave="activePillar = null"
-            @focus="activePillar = 'tech'"
-            @blur="activePillar = null"
-            @keydown.enter="activePillar = activePillar === 'tech' ? null : 'tech'"
-            @keydown.space.prevent="activePillar = activePillar === 'tech' ? null : 'tech'"
-            tabindex="0"
-            role="button"
-            aria-label="Technology pillar - System architecture, Data pipelines, ML feasibility"
-            :aria-expanded="activePillar === 'tech'"
-          >
-            <div
-              :class="{ 'ring-2 ring-primary ring-offset-2 -translate-y-2': activePillar === 'tech' }"
-              class="w-36 h-36 bg-bg-light border-2 border-primary-light rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary hover:-translate-y-1"
-            >
-              <svg class="w-12 h-12 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span class="text-xl font-semibold text-text-dark">Tech</span>
+    <div class="hidden lg:block" x-data="{ active: 'ship' }">
+      <div class="relative mx-auto grid max-w-5xl grid-cols-[1fr_auto_1fr] items-end gap-10">
+        <div class="surface-card p-6" @mouseenter="active='build'" @focus="active='build'" tabindex="0">
+          <div class="flex items-center gap-3">
+            <div class="rounded-lg bg-cyan-900/40 p-2 text-cyan-400">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d={iconPaths.build} /></svg>
             </div>
-
-            <!-- Tooltip -->
-            <div
-              x-show="activePillar === 'tech'"
-              x-transition:enter="transition ease-out duration-200"
-              x-transition:enter-start="opacity-0 translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              x-transition:leave="transition ease-in duration-150"
-              class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-52 bg-white rounded-xl shadow-2xl border border-primary-light p-5 z-20"
-              x-cloak
-            >
-              <ul class="space-y-3">
-                {pillars.tech.bullets.map((bullet) => (
-                  <li class="text-sm text-text-dark/80 flex items-center">
-                    <span class="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-              <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-primary-light rotate-45"></div>
-            </div>
+            <h3 class="text-2xl font-semibold">{build.title}</h3>
           </div>
-
-          <!-- Bridge with YOU -->
-          <div class="flex-1 flex flex-col items-center px-8 pb-4">
-            <!-- Bridge Deck -->
-            <div class="w-full h-3 bg-gradient-to-r from-primary via-primary-light to-primary rounded-full mb-4"></div>
-            <!-- YOU Badge -->
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-lg border-4 border-white">
-              <span class="text-white font-bold text-sm">YOU</span>
-            </div>
-          </div>
-
-          <!-- Business Pillar -->
-          <div
-            class="relative group"
-            @mouseenter="activePillar = 'business'"
-            @mouseleave="activePillar = null"
-            @focus="activePillar = 'business'"
-            @blur="activePillar = null"
-            @keydown.enter="activePillar = activePillar === 'business' ? null : 'business'"
-            @keydown.space.prevent="activePillar = activePillar === 'business' ? null : 'business'"
-            tabindex="0"
-            role="button"
-            aria-label="Business pillar - TCO modeling, ROI logic, Exec narrative"
-            :aria-expanded="activePillar === 'business'"
-          >
-            <div
-              :class="{ 'ring-2 ring-primary ring-offset-2 -translate-y-2': activePillar === 'business' }"
-              class="w-36 h-36 bg-bg-light border-2 border-primary-light rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-primary hover:-translate-y-1"
-            >
-              <svg class="w-12 h-12 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-              </svg>
-              <span class="text-xl font-semibold text-text-dark">Business</span>
-            </div>
-
-            <!-- Tooltip -->
-            <div
-              x-show="activePillar === 'business'"
-              x-transition:enter="transition ease-out duration-200"
-              x-transition:enter-start="opacity-0 translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              x-transition:leave="transition ease-in duration-150"
-              class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-52 bg-white rounded-xl shadow-2xl border border-primary-light p-5 z-20"
-              x-cloak
-            >
-              <ul class="space-y-3">
-                {pillars.business.bullets.map((bullet) => (
-                  <li class="text-sm text-text-dark/80 flex items-center">
-                    <span class="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-              <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-primary-light rotate-45"></div>
-            </div>
-          </div>
+          <p class="mt-3 text-slate-400">{build.tagline}</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-200">
+            {build.bullets.map((bullet) => (
+              <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></span><span>{bullet}</span></li>
+            ))}
+          </ul>
         </div>
 
-        <!-- Support Beams -->
-        <div class="flex justify-between px-16 -mt-1">
-          <div class="w-3 h-20 bg-primary rounded-b-full"></div>
-          <div class="w-3 h-12 bg-primary rounded-b-full"></div>
-          <div class="w-3 h-20 bg-primary rounded-b-full"></div>
+        <div class="pb-10 text-center">
+          <div class="mb-4 h-2 w-40 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400"></div>
+          <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-cyan-500 font-mono text-sm font-bold text-white shadow-glow">YOU</div>
+          <div class="mt-4 h-2 w-40 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-500"></div>
         </div>
 
-        <!-- Delivery Foundation -->
-        <div class="flex justify-center -mt-1">
-          <div
-            class="relative group"
-            @mouseenter="activePillar = 'delivery'"
-            @mouseleave="activePillar = null"
-            @focus="activePillar = 'delivery'"
-            @blur="activePillar = null"
-            @keydown.enter="activePillar = activePillar === 'delivery' ? null : 'delivery'"
-            @keydown.space.prevent="activePillar = activePillar === 'delivery' ? null : 'delivery'"
-            tabindex="0"
-            role="button"
-            aria-label="Delivery pillar - Production execution, Cross-functional teams, Launch readiness"
-            :aria-expanded="activePillar === 'delivery'"
-          >
-            <div
-              :class="{ 'ring-2 ring-white ring-offset-2 ring-offset-primary scale-105': activePillar === 'delivery' }"
-              class="w-52 h-24 bg-primary rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:shadow-xl"
-            >
-              <svg class="w-10 h-10 text-white mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
-              <span class="text-lg font-semibold text-white">Delivery</span>
+        <div class="surface-card p-6" @mouseenter="active='prove'" @focus="active='prove'" tabindex="0">
+          <div class="flex items-center gap-3">
+            <div class="rounded-lg bg-cyan-900/40 p-2 text-cyan-400">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d={iconPaths.prove} /></svg>
             </div>
-
-            <!-- Tooltip -->
-            <div
-              x-show="activePillar === 'delivery'"
-              x-transition:enter="transition ease-out duration-200"
-              x-transition:enter-start="opacity-0 -translate-y-2"
-              x-transition:enter-end="opacity-100 translate-y-0"
-              x-transition:leave="transition ease-in duration-150"
-              class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-56 bg-white rounded-xl shadow-2xl border border-primary-light p-5 z-20"
-              x-cloak
-            >
-              <ul class="space-y-3">
-                {pillars.delivery.bullets.map((bullet) => (
-                  <li class="text-sm text-text-dark/80 flex items-center">
-                    <span class="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-              <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-primary-light rotate-45"></div>
-            </div>
+            <h3 class="text-2xl font-semibold">{prove.title}</h3>
           </div>
+          <p class="mt-3 text-slate-400">{prove.tagline}</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-200">
+            {prove.bullets.map((bullet) => (
+              <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></span><span>{bullet}</span></li>
+            ))}
+          </ul>
         </div>
+      </div>
+
+      <div class="mx-auto mt-8 max-w-xl rounded-2xl border border-cyan-500/30 bg-cyan-900/20 p-6 text-center">
+        <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-cyan-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wide text-cyan-400">
+          <span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span> Foundation
+        </div>
+        <h3 class="text-2xl font-semibold">{ship.title}</h3>
+        <p class="mt-2 text-slate-300">{ship.tagline}</p>
+        <ul class="mt-4 space-y-2 text-left text-sm text-slate-200">
+          {ship.bullets.map((bullet) => (
+            <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></span><span>{bullet}</span></li>
+          ))}
+        </ul>
       </div>
     </div>
 
-    <!-- Mobile/Tablet Layout -->
-    <div
-      class="lg:hidden"
-      x-data="{ activePillar: null }"
-      @click.outside="activePillar = null"
-    >
-      <div class="relative flex flex-col items-center space-y-4">
-        <!-- Connecting Line -->
-        <div class="absolute top-0 bottom-0 left-1/2 w-1 -translate-x-1/2 bg-gradient-to-b from-primary via-primary-light to-primary rounded-full"></div>
-
-        <!-- Tech Pillar -->
-        <div class="relative z-10 w-full max-w-xs">
+    <div class="grid gap-4 lg:hidden">
+      {[build, ship, prove].map((pillar) => (
+        <article class="surface-card p-5" x-data="{ open: false }">
           <button
-            @click="activePillar = activePillar === 'tech' ? null : 'tech'"
-            class="w-full bg-bg-light border-2 border-primary-light rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            :class="{ 'border-primary shadow-lg': activePillar === 'tech' }"
-            aria-label="Technology pillar"
-            :aria-expanded="activePillar === 'tech'"
+            class="flex w-full items-center justify-between text-left"
+            @click="open = !open"
+            :aria-expanded="open"
           >
-            <div class="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+            <div>
+              <h3 class="text-xl font-semibold">{pillar.title}</h3>
+              <p class="mt-1 text-sm text-slate-400">{pillar.tagline}</p>
             </div>
-            <span class="text-lg font-semibold text-text-dark flex-grow text-left">Tech</span>
-            <svg
-              class="w-5 h-5 text-primary transition-transform duration-300"
-              :class="{ 'rotate-180': activePillar === 'tech' }"
-              fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            >
+            <svg class="h-5 w-5 text-cyan-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div
-            x-show="activePillar === 'tech'"
-            x-transition
-            class="mt-2 bg-white border border-primary-light rounded-xl p-4 shadow-lg"
-            x-cloak
-          >
-            <ul class="space-y-2">
-              {pillars.tech.bullets.map((bullet) => (
-                <li class="text-sm text-text-dark/70 flex items-center">
-                  <span class="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <!-- YOU Badge -->
-        <div class="relative z-10">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-xl border-4 border-white">
-            <span class="text-white font-bold text-sm">YOU</span>
-          </div>
-        </div>
-
-        <!-- Business Pillar -->
-        <div class="relative z-10 w-full max-w-xs">
-          <button
-            @click="activePillar = activePillar === 'business' ? null : 'business'"
-            class="w-full bg-bg-light border-2 border-primary-light rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            :class="{ 'border-primary shadow-lg': activePillar === 'business' }"
-            aria-label="Business pillar"
-            :aria-expanded="activePillar === 'business'"
-          >
-            <div class="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-              </svg>
-            </div>
-            <span class="text-lg font-semibold text-text-dark flex-grow text-left">Business</span>
-            <svg
-              class="w-5 h-5 text-primary transition-transform duration-300"
-              :class="{ 'rotate-180': activePillar === 'business' }"
-              fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div
-            x-show="activePillar === 'business'"
-            x-transition
-            class="mt-2 bg-white border border-primary-light rounded-xl p-4 shadow-lg"
-            x-cloak
-          >
-            <ul class="space-y-2">
-              {pillars.business.bullets.map((bullet) => (
-                <li class="text-sm text-text-dark/70 flex items-center">
-                  <span class="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <!-- Delivery Pillar -->
-        <div class="relative z-10 w-full max-w-xs">
-          <button
-            @click="activePillar = activePillar === 'delivery' ? null : 'delivery'"
-            class="w-full bg-primary rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            :class="{ 'shadow-xl': activePillar === 'delivery' }"
-            aria-label="Delivery pillar"
-            :aria-expanded="activePillar === 'delivery'"
-          >
-            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
-            </div>
-            <div class="flex-grow text-left">
-              <span class="text-lg font-semibold text-white">Delivery</span>
-            </div>
-            <svg
-              class="w-5 h-5 text-white transition-transform duration-300"
-              :class="{ 'rotate-180': activePillar === 'delivery' }"
-              fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div
-            x-show="activePillar === 'delivery'"
-            x-transition
-            class="mt-2 bg-white border border-primary-light rounded-xl p-4 shadow-lg"
-            x-cloak
-          >
-            <ul class="space-y-2">
-              {pillars.delivery.bullets.map((bullet) => (
-                <li class="text-sm text-text-dark/70 flex items-center">
-                  <span class="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+          <ul x-cloak x-show="open" x-transition class="mt-4 space-y-2 text-sm text-slate-200">
+            {pillar.bullets.map((bullet) => (
+              <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-cyan-400"></span><span>{bullet}</span></li>
+            ))}
+          </ul>
+        </article>
+      ))}
     </div>
-
-    <!-- Instruction hint -->
-
   </div>
 </section>

@@ -3,27 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --primary: #2BA8A3;        /* Teal - CTAs, accents */
-  --primary-light: #B3E9E6;  /* Mint - backgrounds, tints */
-  --text-dark: #1F2937;      /* Dark gray - all text */
-  --bg-light: #F9FAFB;       /* Light gray - backgrounds */
-  --white: #FFFFFF;          /* Pure white - cards, buttons */
+  --navy-950: #0a0f1e;
+  --navy-900: #0f172a;
+  --navy-800: #1e293b;
+  --navy-700: #334155;
 
-  /* Variant colors */
-  --secondary: #6B7280;      /* Gray - secondary actions */
-  --secondary-light: #E5E7EB;
-  --success: #10B981;        /* Green - success states */
-  --success-light: #D1FAE5;
-  --danger: #EF4444;         /* Red - danger/error states */
-  --danger-light: #FEE2E2;
-  --warning: #F59E0B;        /* Amber - warning states */
-  --warning-light: #FEF3C7;
+  --white: #ffffff;
+  --slate-200: #e2e8f0;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
 
-  /* Legacy names for compatibility */
-  --color-primary: var(--primary);
-  --color-primary-light: var(--primary-light);
-  --color-text-dark: var(--text-dark);
-  --color-bg-light: var(--bg-light);
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-900: #164e63;
+
+  --amber-500: #f59e0b;
+  --amber-900: #78350f;
+
+  --primary: var(--cyan-500);
+  --primary-light: rgba(34, 211, 238, 0.2);
+  --secondary: var(--slate-400);
+  --secondary-light: rgba(148, 163, 184, 0.2);
+  --success: #22c55e;
+  --success-light: rgba(34, 197, 94, 0.2);
+  --danger: #ef4444;
+  --danger-light: rgba(239, 68, 68, 0.2);
+  --warning: var(--amber-500);
+  --warning-light: rgba(245, 158, 11, 0.2);
+  --text-dark: var(--white);
+  --bg-light: var(--navy-900);
 }
 
 html {
@@ -32,6 +40,41 @@ html {
 
 @layer base {
   body {
-    @apply text-text-dark bg-bg-light;
+    @apply bg-navy-950 text-slate-200 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-white;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply py-28 lg:py-32;
+  }
+
+  .content-shell {
+    @apply max-w-6xl mx-auto px-6 lg:px-12;
+  }
+
+  .surface-card {
+    @apply bg-navy-800 border border-navy-700 rounded-xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-white shadow-lg shadow-cyan-900/20 hover:bg-cyan-400;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-cyan-500 px-6 py-3 font-semibold text-cyan-400 hover:bg-cyan-500 hover:text-white;
   }
 }
