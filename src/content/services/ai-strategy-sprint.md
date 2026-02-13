@@ -3,6 +3,7 @@ title: AI Strategy Sprint
 slug: ai-strategy-sprint
 order: 1
 pillar: build
+scopeTitle: Discover & Validate
 hook: Stop guessing what to build next.
 tagline: Define the right problem, validate feasibility, and commit to one high-leverage path.
 bestFor: Teams with multiple product or AI initiatives and no shared decision framework.

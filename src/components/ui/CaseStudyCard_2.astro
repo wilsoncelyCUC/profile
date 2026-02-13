@@ -21,6 +21,7 @@ const pillarLabels: Record<PillarKey, string> = {
   build: 'Discover/Build',
   ship: 'Build/Ship',
   prove: 'Measure/Scale',
+  poc: 'Proof of Concept',
 };
 ---
 
@@ -42,7 +43,7 @@ const pillarLabels: Record<PillarKey, string> = {
   <p class="mt-4 text-sm text-slate-300"><span class="font-semibold text-white">Challenge:</span> {caseStudy.challenge}</p>
 
   <ul class="mt-4 space-y-1.5 text-sm text-slate-300">
-    {caseStudy.actions.slice(0, 2).map((action) => (
+    {(caseStudy.actions || []).slice(0, 2).map((action) => (
       <li class="flex gap-2">
         <span class="mt-2 h-1.5 w-1.5 rounded-full bg-sky-300"></span>
         <span>{action}</span>

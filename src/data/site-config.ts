@@ -81,10 +81,16 @@ export const siteConfig = {
       coverage: {
         title: 'How we can work together',
         lead:
-          'I can support one phase when there is a specific bottleneck, or run the full cycle end-to-end.',
-        jumpLabel: 'See the full phase breakdown',
+          'I can support one scope when there is a specific bottleneck, or run the full cycle end-to-end.',
+        jumpLabel: 'See the full scope breakdown',
       },
     },
+    scopes: [
+      { number: 1, title: 'Discover & Validate' },
+      { number: 2, title: 'Proof of Concept' },
+      { number: 3, title: 'AI Product Delivery & Scaling' },
+      { number: 4, title: 'AI Value Realization & Expansion' },
+    ],
     howIWork: {
       title: 'How I Work: Discover, Build, Ship, Measure.',
       subtitle:
@@ -360,7 +366,7 @@ export const siteConfig = {
   },
 };
 
-export type PillarKey = 'build' | 'ship' | 'prove';
+export type PillarKey = 'build' | 'ship' | 'prove' | 'poc';
 
 export const resolveBookingUrl = (href: string) =>
   href === 'BOOKING_URL' ? siteConfig.bookingUrl : href;

@@ -6,6 +6,7 @@ interface Props {
     title: string;
     slug: string;
     pillar: PillarKey;
+    scopeTitle?: string;
     hook: string;
     tagline: string;
     bestFor: string;
@@ -22,13 +23,11 @@ const pillarLabel: Record<PillarKey, string> = {
   build: 'Discover & Validate',
   ship: 'Build & Ship',
   prove: 'Measure & Scale',
+  poc: 'Proof of Concept',
 };
 
-const stepCoverage: Record<PillarKey, string[]> = {
-  build: ['Discover'],
-  ship: ['Build', 'Ship'],
-  prove: ['Measure'],
-};
+const displayLabel = service.scopeTitle ?? pillarLabel[service.pillar];
+const displayTitle = service.scopeTitle ?? service.title;
 
 const bookingUrl = new URL(resolveBookingUrl(siteConfig.bookingUrl));
 bookingUrl.searchParams.set('service', service.slug);
@@ -37,17 +36,12 @@ bookingUrl.searchParams.set('service', service.slug);
 <article class="v2-card flex h-full flex-col p-6">
   <div class="mb-4 flex items-center justify-between gap-3">
     <span class="rounded-full border border-sky-400/35 bg-sky-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-200">
-      {pillarLabel[service.pillar]}
+      {displayLabel}
     </span>
     <span class="text-xs text-slate-400">{service.format}</span>
   </div>
 
-  <div class="mb-4 rounded-lg border border-slate-600/40 bg-slate-900/35 px-3 py-2 text-xs text-slate-200">
-    <span class="font-semibold text-sky-200">Step coverage:</span> {stepCoverage[service.pillar].join(' + ')}
-    <span class="block mt-1 text-slate-300">Can run as a focused step or as part of all four steps (Discover, Build, Ship, Measure).</span>
-  </div>
-
-  <h3 class="text-2xl font-semibold text-white">{service.title}</h3>
+  <h3 class="text-2xl font-semibold text-white">{displayTitle}</h3>
   <p class="mt-2 text-sm font-semibold text-sky-300">{service.hook}</p>
   <p class="mt-3 text-sm text-slate-300">{service.tagline}</p>
 
