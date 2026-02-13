@@ -1,22 +1,13 @@
 ---
-import ValueLayout from '../layouts/ValueLayout.astro';
-import Hero from '../components/sections/Hero.astro';
-import Pillars from '../components/sections/Pillars.astro';
-import Services from '../components/sections/Services.astro';
-import Customers from '../components/sections/Customers.astro';
-import Newsletter from '../components/sections/Newsletter.astro';
-import Community from '../components/sections/Community.astro';
-import HowWeStart from '../components/sections/HowWeStart.astro';
-import ContactCTA from '../components/sections/ContactCTA.astro';
+import LandingPage_2 from '../components/pages/LandingPage_2.astro';
+import ValueLayout_2 from '../layouts/ValueLayout_2.astro';
+import { siteConfig } from '../data/site-config';
 ---
 
-<ValueLayout>
-  <Hero />
-  <Customers />
-  <Pillars />
-  <Services />
-  <Newsletter />
-  <Community />
-  <HowWeStart />
-  <ContactCTA />
-</ValueLayout>
+<ValueLayout_2
+  title={siteConfig.valuePageV2.seo.title}
+  description={siteConfig.valuePageV2.seo.description}
+  canonicalPath="/profile/value"
+>
+  <LandingPage_2 />
+</ValueLayout_2>

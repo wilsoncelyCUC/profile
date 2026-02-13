@@ -4,65 +4,23 @@ import { siteConfig } from '../../data/site-config';
 const { newsletter } = siteConfig;
 ---
 
-<section id="newsletter" class="py-20 bg-gradient-to-b from-white to-bg-light">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <!-- Subscriber Badge -->
-    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
-      <span class="text-2xl font-black text-primary">{newsletter?.subscribersShort || "15K+"}</span>
-      <span class="text-sm font-medium text-primary/80 uppercase tracking-wide">Readers</span>
+<section id="newsletter" class="section-shell border-b border-navy-800 py-20">
+  <div class="content-shell">
+    <div class="surface-card mx-auto max-w-4xl p-8 text-center lg:p-12">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-cyan-400">Newsletter</p>
+      <h2 class="mt-4 text-3xl font-bold sm:text-4xl">{newsletter.headline}</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">{newsletter.description}</p>
+
+      <div class="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-900/20 px-4 py-2">
+        <span class="font-mono text-lg font-bold text-cyan-400">{newsletter.subscribersShort}</span>
+        <span class="text-sm text-slate-300">subscribers</span>
+      </div>
+
+      <p class="mx-auto mt-5 max-w-xl text-sm text-slate-400">{newsletter.socialProof}</p>
+
+      <a href={newsletter.link} target="_blank" rel="noopener noreferrer" class="btn-primary mt-8">
+        {newsletter.ctaText}
+      </a>
     </div>
-
-    <!-- FOMO Headline -->
-    <h2 class="text-3xl sm:text-4xl font-black text-text-dark mb-4">
-      {newsletter?.headline || "Don't miss the signal in the noise"}
-    </h2>
-
-    <!-- Value Prop -->
-    <p class="text-xl text-text-dark/70 mb-8 max-w-xl mx-auto">
-      {newsletter?.description || "Weekly insights on AI that ships. From strategy to production."}
-    </p>
-
-    <!-- Email Signup Form -->
-    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-6">
-      <input
-        type="email"
-        placeholder="your@email.com"
-        class="flex-1 px-5 py-4 bg-white border border-primary-light rounded-xl text-text-dark placeholder-text-dark/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
-      />
-      <button
-        type="submit"
-        class="magnetic-btn px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all group flex items-center justify-center gap-2 shadow-lg shadow-primary/25"
-      >
-        <span>Subscribe</span>
-        <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </button>
-    </form>
-
-    <!-- Social Proof Line -->
-    <p class="text-sm text-text-dark/50">
-      {newsletter?.socialProof || "Join practitioners who build, not just talk."}
-    </p>
   </div>
 </section>
-
-<style>
-  .magnetic-btn {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .magnetic-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s ease;
-  }
-
-  .magnetic-btn:hover::before {
-    transform: translateX(100%);
-  }
-</style>

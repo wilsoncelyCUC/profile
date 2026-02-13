@@ -1,0 +1,28 @@
+---
+import { siteConfig } from '../../data/site-config';
+
+const testimonials = siteConfig.testimonials || [];
+---
+
+{testimonials.length > 0 && (
+  <section id="testimonials" class="section-shell border-b border-navy-800 py-20">
+    <div class="content-shell">
+      <div class="mb-12 text-center">
+        <p class="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">Testimonials</p>
+        <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Trusted by leaders accountable for outcomes</h2>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-3">
+        {testimonials.map((testimonial) => (
+          <blockquote class="surface-card border-l-2 border-l-cyan-500 p-6">
+            <p class="text-lg leading-relaxed text-slate-200">“{testimonial.quote}”</p>
+            <footer class="mt-6 text-sm text-slate-400">
+              <span class="block font-semibold text-white">{testimonial.name}</span>
+              <span>{testimonial.title}</span>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
