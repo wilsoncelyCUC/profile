@@ -2,20 +2,20 @@ export const siteConfig = {
   title: 'Wilson Cely | AI Productization for Enterprises',
   description: 'I turn AI prototypes into production systems for enterprises where the stakes are real.',
   author: 'Wilson Cely',
-  email: 'hello@wilsoncely.com',
+  email: 'wcely@exore.net',
   bookingUrl: 'https://cal.com/wilsoncely/discovery-call',
   valuePageV2: {
     seo: {
-      title: 'Wilson Cely | Fractional Product Engineer for Outcome-Critical Teams',
+      title: 'Wilson Cely | Product Engineer for Outcome-Critical Teams',
       description:
-        'Fractional product engineering for SMEs, fast startups, and enterprise innovation teams that need to move from prototype momentum to measurable product outcomes.',
+        'Product engineering for SMEs, fast startups, and enterprise innovation teams that need to move from prototype momentum to measurable product outcomes.',
     },
     hero: {
-      kicker: 'Fractional Product Engineering',
+      kicker: 'Product Engineering',
       headline:
         'I help teams own product outcomes end-to-end, from problem framing to shipped value.',
       subheadline:
-        'You do not need another handoff chain. You need one operator who can align product decisions, engineering execution, and business impact across SMEs, high-paced startups, and enterprise innovation teams.',
+        'I replace handoff chains with one accountable operator model, aligning product decisions, engineering execution, and business impact across SMEs, high-paced startups, and enterprise innovation teams.',
       audiences: [
         'SME operators',
         'High-paced startup teams',
@@ -30,9 +30,9 @@ export const siteConfig = {
         href: '#services',
       },
       stats: [
-        { value: '8+', label: 'Complex delivery programs shipped' },
-        { value: '40K+', label: 'Product and MLOps community reach' },
-        { value: '4+', label: 'Industries with production outcomes' },
+        { value: '100', label: 'Complex projects delivered' },
+        { value: '15+', label: 'Years of experience in Enterprise/Startup' },
+        { value: '15', label: 'AI-first projects completed' },
       ],
     },
     problem: {
@@ -61,12 +61,32 @@ export const siteConfig = {
       ],
     },
     servicesSection: {
-      title: 'Three focused offers to close the product engineering gap.',
+      title: 'What Product Engineering means, and how I engage.',
       intro:
-        'Each engagement is designed to reduce decision friction, increase shipping velocity, and make outcomes visible to the people funding the work.',
+        'A Product Engineer owns outcomes, not just tickets. I can support one step of the process or run all four steps end-to-end with the team.',
+      definition: {
+        isTitle: 'What a Product Engineer is',
+        isItems: [
+          'Owns user and business outcomes, not only implementation output',
+          'Connects product decisions, engineering tradeoffs, and delivery execution',
+          'Uses metrics to learn, iterate, and prioritize what matters next',
+        ],
+        isntTitle: 'What a Product Engineer is not',
+        isntItems: [
+          'Not a ticket-only developer waiting for requirements',
+          'Not a pure strategy advisor detached from shipping',
+          'Not staff augmentation without accountability for impact',
+        ],
+      },
+      coverage: {
+        title: 'How we can work together',
+        lead:
+          'I can support one phase when there is a specific bottleneck, or run the full cycle end-to-end.',
+        jumpLabel: 'See the full phase breakdown',
+      },
     },
-    operatingModel: {
-      title: 'A simple operating model: Discover, Build, Ship, Measure.',
+    howIWork: {
+      title: 'How I Work: Discover, Build, Ship, Measure.',
       subtitle:
         'A repeatable cadence that combines product judgment with technical execution and measurable accountability.',
       steps: [
@@ -103,7 +123,7 @@ export const siteConfig = {
           'Lean teams where one person needs to connect roadmap choices, implementation, and business priorities.',
         outcome:
           'Faster shipping with fewer false starts and clearer decisions about where to invest next.',
-        trigger: 'You are juggling delivery with no dedicated product leadership layer.',
+        trigger: 'I am most useful when delivery is being juggled without a dedicated product leadership layer.',
       },
       {
         title: 'High-Paced Startups',
@@ -111,7 +131,7 @@ export const siteConfig = {
           'Teams scaling quickly that need to keep product velocity high without sacrificing quality or focus.',
         outcome:
           'Higher experiment throughput, tighter execution cycles, and clearer signal on what drives growth.',
-        trigger: 'Your backlog is full but your impact per sprint is inconsistent.',
+        trigger: 'I am most useful when backlog volume is high but impact per sprint is inconsistent.',
       },
       {
         title: 'Enterprise Innovation/Product Teams',
@@ -119,7 +139,7 @@ export const siteConfig = {
           'Departments under pressure to turn pilots into production outcomes with governance and executive clarity.',
         outcome:
           'Production-grade delivery with transparent value reporting and stronger stakeholder confidence.',
-        trigger: 'You can demo progress but cannot yet defend outcomes at executive level.',
+        trigger: 'I am most useful when demo progress exists but outcomes are not yet defensible at executive level.',
       },
     ],
     proofSection: {
@@ -135,7 +155,7 @@ export const siteConfig = {
     contact: {
       title: 'Need outcome ownership across product and engineering?',
       subtitle:
-        'Book a discovery call to define your highest-leverage initiative, delivery model, and success metrics.',
+        'Book a discovery call and I will define the highest-leverage initiative, delivery model, and success metrics.',
       primaryCtaText: 'Book a Discovery Call',
       secondaryCtaText: 'Email Directly',
     },

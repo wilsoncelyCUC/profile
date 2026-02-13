@@ -5,7 +5,7 @@ import ServiceCard_2 from '../ui/ServiceCard_2.astro';
 
 const services = await getCollection('services');
 const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
-const { servicesSection } = siteConfig.valuePageV2;
+const { servicesSection, howIWork } = siteConfig.valuePageV2;
 ---
 
 <section id="services" class="v2-section border-b border-slate-700/30" aria-labelledby="services-heading">
@@ -14,6 +14,53 @@ const { servicesSection } = siteConfig.valuePageV2;
       <p class="v2-kicker">Services</p>
       <h2 id="services-heading" class="v2-title">{servicesSection.title}</h2>
       <p class="v2-lead">{servicesSection.intro}</p>
+    </div>
+
+    <div class="mt-8 v2-grid lg:grid-cols-2">
+      <article class="v2-card p-6">
+        <h3 class="text-xl font-semibold text-white">{servicesSection.definition.isTitle}</h3>
+        <ul class="mt-4 space-y-2 text-sm text-slate-300">
+          {servicesSection.definition.isItems.map((item) => (
+            <li class="flex gap-2">
+              <span class="mt-2 h-1.5 w-1.5 rounded-full bg-sky-300"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="v2-card p-6">
+        <h3 class="text-xl font-semibold text-white">{servicesSection.definition.isntTitle}</h3>
+        <ul class="mt-4 space-y-2 text-sm text-slate-300">
+          {servicesSection.definition.isntItems.map((item) => (
+            <li class="flex gap-2">
+              <span class="mt-2 h-1.5 w-1.5 rounded-full bg-orange-300"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+    </div>
+
+    <div class="v2-connector mt-8" aria-labelledby="services-connector-heading">
+      <p id="services-connector-heading" class="v2-connector-title">{servicesSection.coverage.title}</p>
+      <p class="v2-connector-lead">{servicesSection.coverage.lead}</p>
+
+      <div class="v2-connector-line">
+        <span class="v2-connector-track" aria-hidden="true"></span>
+        <ol class="v2-phase-row" aria-label="Delivery phases">
+          {howIWork.steps.map((step, index) => (
+            <li class="v2-phase-item">
+              <span class="v2-phase-node" style={`animation-delay: ${index * 0.2}s`}></span>
+              <span class="v2-phase-label">Phase {step.number}: {step.title}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <a href="#how-i-work-3" class="v2-connector-jump">
+        {servicesSection.coverage.jumpLabel} <span aria-hidden="true">→</span>
+      </a>
     </div>
 
     <div class="mt-10 v2-grid lg:grid-cols-3">

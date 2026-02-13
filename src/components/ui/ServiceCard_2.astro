@@ -24,6 +24,12 @@ const pillarLabel: Record<PillarKey, string> = {
   prove: 'Measure & Scale',
 };
 
+const stepCoverage: Record<PillarKey, string[]> = {
+  build: ['Discover'],
+  ship: ['Build', 'Ship'],
+  prove: ['Measure'],
+};
+
 const bookingUrl = new URL(resolveBookingUrl(siteConfig.bookingUrl));
 bookingUrl.searchParams.set('service', service.slug);
 ---
@@ -34,6 +40,11 @@ bookingUrl.searchParams.set('service', service.slug);
       {pillarLabel[service.pillar]}
     </span>
     <span class="text-xs text-slate-400">{service.format}</span>
+  </div>
+
+  <div class="mb-4 rounded-lg border border-slate-600/40 bg-slate-900/35 px-3 py-2 text-xs text-slate-200">
+    <span class="font-semibold text-sky-200">Step coverage:</span> {stepCoverage[service.pillar].join(' + ')}
+    <span class="block mt-1 text-slate-300">Can run as a focused step or as part of all four steps (Discover, Build, Ship, Measure).</span>
   </div>
 
   <h3 class="text-2xl font-semibold text-white">{service.title}</h3>

@@ -133,6 +133,102 @@
   border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
 
+.v2-connector {
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.v2-connector-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e6f5ff;
+}
+
+.v2-connector-lead {
+  margin-top: 0.5rem;
+  max-width: 52rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #c8d8ea;
+}
+
+.v2-connector-line {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.v2-connector-track {
+  position: absolute;
+  top: 0.38rem;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(14, 165, 233, 0),
+    rgba(125, 211, 252, 0.55) 20%,
+    rgba(125, 211, 252, 0.55) 80%,
+    rgba(14, 165, 233, 0)
+  );
+}
+
+.v2-phase-row {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.v2-phase-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+  text-align: center;
+}
+
+.v2-phase-node {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: #7dd3fc;
+  box-shadow: 0 0 0 0 rgba(125, 211, 252, 0.4);
+  animation: v2-pulse 2.6s ease-in-out infinite;
+}
+
+.v2-phase-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #d6e5f5;
+}
+
+.v2-connector-note {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  color: #b7c9de;
+}
+
+.v2-connector-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #7dd3fc;
+}
+
+.v2-connector-jump:hover {
+  color: #bae6fd;
+}
+
 .v2-ambient {
   position: absolute;
   border-radius: 999px;
@@ -153,8 +249,41 @@
   }
 }
 
+@keyframes v2-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(125, 211, 252, 0.35);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(125, 211, 252, 0);
+    transform: scale(1.06);
+  }
+}
+
 @media (max-width: 768px) {
   .v2-shell {
     width: min(1120px, calc(100% - 2rem));
+  }
+
+  .v2-phase-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 0.9rem;
+  }
+
+  .v2-phase-item {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .v2-connector-track {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-phase-node {
+    animation: none;
   }
 }
