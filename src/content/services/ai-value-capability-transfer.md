@@ -1,8 +1,9 @@
 ---
 title: AI Value & Capability Transfer
 slug: ai-value-capability-transfer
-order: 3
+order: 4
 pillar: prove
+scopeTitle: AI Value Realization & Expansion
 hook: Shipping is not enough if the impact is invisible.
 tagline: Turn delivery into measurable business outcomes and durable internal capability.
 bestFor: Teams that launched product or AI initiatives but cannot consistently prove impact to leadership.

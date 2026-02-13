@@ -1,8 +1,9 @@
 ---
 title: AI Product Lead
 slug: fractional-ai-product-lead
-order: 2
+order: 3
 pillar: ship
+scopeTitle: AI Product Delivery & Scaling
 hook: You have momentum, but no single owner for outcomes.
 tagline: Add leadership that spans product decisions, engineering execution, and stakeholder alignment.
 bestFor: Teams that can build but need a senior operator to convert roadmap intent into reliable delivery.
