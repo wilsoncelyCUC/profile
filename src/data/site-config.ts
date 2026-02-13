@@ -4,6 +4,142 @@ export const siteConfig = {
   author: 'Wilson Cely',
   email: 'hello@wilsoncely.com',
   bookingUrl: 'https://cal.com/wilsoncely/discovery-call',
+  valuePageV2: {
+    seo: {
+      title: 'Wilson Cely | Fractional Product Engineer for Outcome-Critical Teams',
+      description:
+        'Fractional product engineering for SMEs, fast startups, and enterprise innovation teams that need to move from prototype momentum to measurable product outcomes.',
+    },
+    hero: {
+      kicker: 'Fractional Product Engineering',
+      headline:
+        'I help teams own product outcomes end-to-end, from problem framing to shipped value.',
+      subheadline:
+        'You do not need another handoff chain. You need one operator who can align product decisions, engineering execution, and business impact across SMEs, high-paced startups, and enterprise innovation teams.',
+      audiences: [
+        'SME operators',
+        'High-paced startup teams',
+        'Enterprise innovation and product departments',
+      ],
+      primaryCta: {
+        text: 'Book a Discovery Call',
+        href: 'BOOKING_URL',
+      },
+      secondaryCta: {
+        text: 'See Services',
+        href: '#services',
+      },
+      stats: [
+        { value: '8+', label: 'Complex delivery programs shipped' },
+        { value: '40K+', label: 'Product and MLOps community reach' },
+        { value: '4+', label: 'Industries with production outcomes' },
+      ],
+    },
+    problem: {
+      title: 'Most teams are not blocked by ideas. They are blocked by ownership gaps.',
+      subtitle:
+        'The same pattern repeats: insights exist, demos exist, interest exists, but outcomes do not scale because discovery, execution, and measurement are fragmented.',
+      items: [
+        {
+          title: 'Too many ideas, no decision system',
+          detail:
+            'Roadmaps are driven by urgency and internal opinions instead of validated opportunities and constraints.',
+          impact: 'Teams spend quarters on low-impact bets.',
+        },
+        {
+          title: 'Work ships, outcomes stay unclear',
+          detail:
+            'Features launch without a shared model for activation, retention, reliability, and commercial value.',
+          impact: 'Leadership questions budget and direction.',
+        },
+        {
+          title: 'Cross-functional drag kills momentum',
+          detail:
+            'Product, data, and engineering move at different speeds with no single owner for end-to-end delivery.',
+          impact: 'Execution stalls at handoff boundaries.',
+        },
+      ],
+    },
+    servicesSection: {
+      title: 'Three focused offers to close the product engineering gap.',
+      intro:
+        'Each engagement is designed to reduce decision friction, increase shipping velocity, and make outcomes visible to the people funding the work.',
+    },
+    operatingModel: {
+      title: 'A simple operating model: Discover, Build, Ship, Measure.',
+      subtitle:
+        'A repeatable cadence that combines product judgment with technical execution and measurable accountability.',
+      steps: [
+        {
+          number: 1,
+          title: 'Discover',
+          description:
+            'Clarify user problems, business constraints, and the smallest high-leverage opportunity worth shipping.',
+        },
+        {
+          number: 2,
+          title: 'Build',
+          description:
+            'Design and implement the solution path with clear tradeoffs, architecture realism, and ownership mapping.',
+        },
+        {
+          number: 3,
+          title: 'Ship',
+          description:
+            'Run cross-functional delivery to production with release gates, risk control, and operational readiness.',
+        },
+        {
+          number: 4,
+          title: 'Measure',
+          description:
+            'Instrument outcomes, review impact, and feed insights back into the next product cycle.',
+        },
+      ],
+    },
+    icpSegments: [
+      {
+        title: 'SME Operators',
+        bestFor:
+          'Lean teams where one person needs to connect roadmap choices, implementation, and business priorities.',
+        outcome:
+          'Faster shipping with fewer false starts and clearer decisions about where to invest next.',
+        trigger: 'You are juggling delivery with no dedicated product leadership layer.',
+      },
+      {
+        title: 'High-Paced Startups',
+        bestFor:
+          'Teams scaling quickly that need to keep product velocity high without sacrificing quality or focus.',
+        outcome:
+          'Higher experiment throughput, tighter execution cycles, and clearer signal on what drives growth.',
+        trigger: 'Your backlog is full but your impact per sprint is inconsistent.',
+      },
+      {
+        title: 'Enterprise Innovation/Product Teams',
+        bestFor:
+          'Departments under pressure to turn pilots into production outcomes with governance and executive clarity.',
+        outcome:
+          'Production-grade delivery with transparent value reporting and stronger stakeholder confidence.',
+        trigger: 'You can demo progress but cannot yet defend outcomes at executive level.',
+      },
+    ],
+    proofSection: {
+      title: 'Proof from high-stakes environments where quality and accountability matter.',
+      subtitle:
+        'Case studies from telecom, payments, and automotive contexts where product engineering discipline made delivery measurable and repeatable.',
+      snapshots: [
+        { value: '3', label: 'Industries represented in featured cases' },
+        { value: '100%', label: 'Case studies tied to explicit business outcomes' },
+        { value: '1', label: 'Single accountable operating model across teams' },
+      ],
+    },
+    contact: {
+      title: 'Need outcome ownership across product and engineering?',
+      subtitle:
+        'Book a discovery call to define your highest-leverage initiative, delivery model, and success metrics.',
+      primaryCtaText: 'Book a Discovery Call',
+      secondaryCtaText: 'Email Directly',
+    },
+  },
 
   hero: {
     headline: 'I turn AI prototypes into production systems for enterprises where the stakes are real.',
@@ -163,7 +299,7 @@ export const siteConfig = {
   },
 
   community: {
-    headline: "Building Munich's MLOps Scene",
+    headline: "Part of Munich's MLOps Scene",
     description: "Co-organizer of one of Europe's largest MLOps communities.",
     membersShort: '40K+',
     link: 'https://lu.ma/munich-mlops',

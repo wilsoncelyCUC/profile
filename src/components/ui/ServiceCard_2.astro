@@ -1,0 +1,76 @@
+---
+import { resolveBookingUrl, type PillarKey, siteConfig } from '../../data/site-config';
+
+interface Props {
+  service: {
+    title: string;
+    slug: string;
+    pillar: PillarKey;
+    hook: string;
+    tagline: string;
+    bestFor: string;
+    outcome: string;
+    deliverables: string[];
+    format: string;
+    ctaText: string;
+  };
+}
+
+const { service } = Astro.props;
+
+const pillarLabel: Record<PillarKey, string> = {
+  build: 'Discover & Validate',
+  ship: 'Build & Ship',
+  prove: 'Measure & Scale',
+};
+
+const bookingUrl = new URL(resolveBookingUrl(siteConfig.bookingUrl));
+bookingUrl.searchParams.set('service', service.slug);
+---
+
+<article class="v2-card flex h-full flex-col p-6">
+  <div class="mb-4 flex items-center justify-between gap-3">
+    <span class="rounded-full border border-sky-400/35 bg-sky-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-200">
+      {pillarLabel[service.pillar]}
+    </span>
+    <span class="text-xs text-slate-400">{service.format}</span>
+  </div>
+
+  <h3 class="text-2xl font-semibold text-white">{service.title}</h3>
+  <p class="mt-2 text-sm font-semibold text-sky-300">{service.hook}</p>
+  <p class="mt-3 text-sm text-slate-300">{service.tagline}</p>
+
+  <div class="mt-5 space-y-4 text-sm">
+    <div>
+      <p class="font-semibold text-white">Best for</p>
+      <p class="mt-1 text-slate-300">{service.bestFor}</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-white">Outcome</p>
+      <p class="mt-1 text-slate-300">{service.outcome}</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-white">What you get</p>
+      <ul class="mt-2 space-y-1.5 text-slate-300">
+        {service.deliverables.map((deliverable) => (
+          <li class="flex gap-2">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-sky-300"></span>
+            <span>{deliverable}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <a
+    href={bookingUrl.toString()}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="v2-btn-primary mt-7 w-full"
+    aria-label={`Request scope for ${service.title}`}
+  >
+    {service.ctaText}
+  </a>
+</article>

@@ -1,8 +1,13 @@
 ---
-import ValueLayout from '../layouts/ValueLayout.astro';
-import LandingPage from '../components/pages/LandingPage.astro';
+import LandingPage_2 from '../components/pages/LandingPage_2.astro';
+import ValueLayout_2 from '../layouts/ValueLayout_2.astro';
+import { siteConfig } from '../data/site-config';
 ---
 
-<ValueLayout canonicalPath="/profile/">
-  <LandingPage />
-</ValueLayout>
+<ValueLayout_2
+  title={siteConfig.valuePageV2.seo.title}
+  description={siteConfig.valuePageV2.seo.description}
+  canonicalPath="/profile/value"
+>
+  <LandingPage_2 />
+</ValueLayout_2>

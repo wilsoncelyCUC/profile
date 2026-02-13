@@ -3,17 +3,17 @@ title: AI Value & Capability Transfer
 slug: ai-value-capability-transfer
 order: 3
 pillar: prove
-hook: Leadership asks for ROI, and your team lacks a shared value language.
-tagline: Prove outcomes and transfer delivery capability to your internal team.
-bestFor: Organizations with launched AI systems that need measurable business impact and durable operating capability.
-outcome: A defensible value-realization system that protects budget and supports scale-up decisions.
+hook: Shipping is not enough if the impact is invisible.
+tagline: Turn delivery into measurable business outcomes and durable internal capability.
+bestFor: Teams that launched product or AI initiatives but cannot consistently prove impact to leadership.
+outcome: A repeatable value system that ties product metrics to business decisions and scale-up confidence.
 deliverables:
-  - KPI tree linking model metrics to business outcomes
-  - Value reporting cadence with clear owners
-  - Executive-ready outcome review templates
-  - Enablement plan for internal AI product leadership
+  - KPI tree linking usage and quality metrics to business outcomes
+  - Outcome review cadence with clear owners and definitions
+  - Executive-ready reporting templates for budget conversations
+  - Capability transfer plan for internal product engineering leadership
 format: Setup phase + monthly advisory cadence
 ctaText: Request scope
 ---
 
-Build a repeatable value and governance system so AI outcomes are visible, trusted, and scalable.
+Build a value measurement muscle that survives org changes, budget reviews, and scaling pressure.

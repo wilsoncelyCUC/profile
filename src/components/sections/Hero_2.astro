@@ -1,0 +1,61 @@
+---
+import { resolveBookingUrl, siteConfig } from '../../data/site-config';
+
+const { hero } = siteConfig.valuePageV2;
+const primaryHref = resolveBookingUrl(hero.primaryCta.href);
+---
+
+<section id="hero" class="v2-section relative overflow-hidden border-b border-slate-700/30 pt-36">
+  <span class="v2-ambient -left-20 top-16 h-52 w-52 bg-sky-500/35"></span>
+  <span class="v2-ambient -right-16 top-10 h-44 w-44 bg-orange-500/20" style="animation-delay: 1.8s"></span>
+
+  <div class="v2-shell">
+    <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <p class="v2-kicker">{hero.kicker}</p>
+        <h1 class="v2-title max-w-3xl text-white">{hero.headline}</h1>
+        <p class="v2-lead max-w-2xl">{hero.subheadline}</p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          {hero.audiences.map((audience) => (
+            <span class="v2-pill">
+              <span class="v2-dot"></span>
+              {audience}
+            </span>
+          ))}
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={primaryHref} target="_blank" rel="noopener noreferrer" class="v2-btn-primary">
+            {hero.primaryCta.text}
+          </a>
+          <a href={hero.secondaryCta.href} class="v2-btn-secondary">
+            {hero.secondaryCta.text}
+          </a>
+        </div>
+
+        <div class="mt-9 v2-grid sm:grid-cols-3">
+          {hero.stats.map((stat) => (
+            <article class="v2-card p-4">
+              <p class="text-2xl font-bold text-sky-300">{stat.value}</p>
+              <p class="mt-1 text-sm text-slate-300">{stat.label}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <aside class="v2-card relative overflow-hidden p-4">
+        <div class="absolute inset-x-6 top-5 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-sky-300/85">
+          <span>Product Engineering</span>
+          <span>Outcome Ownership</span>
+        </div>
+        <img
+          src="/profile/images/wilson-hero.jpeg"
+          alt="Wilson Cely"
+          class="mt-8 h-full w-full rounded-xl object-cover"
+          loading="eager"
+        />
+      </aside>
+    </div>
+  </div>
+</section>

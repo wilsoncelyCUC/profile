@@ -3,17 +3,17 @@ title: AI Strategy Sprint
 slug: ai-strategy-sprint
 order: 1
 pillar: build
-hook: Your pilot proves interest, not production feasibility.
-tagline: De-risk architecture and define the right first production scope.
-bestFor: Teams with multiple AI ideas or stalled prototypes and no technical decision framework.
-outcome: A production-ready AI roadmap with validated architecture and clear decision gates.
+hook: Stop guessing what to build next.
+tagline: Define the right problem, validate feasibility, and commit to one high-leverage path.
+bestFor: Teams with multiple product or AI initiatives and no shared decision framework.
+outcome: A ranked execution plan with explicit tradeoffs, ownership, and the next 90 days de-risked.
 deliverables:
-  - Architecture and integration assessment
-  - Use-case ranking by feasibility and business impact
-  - Evaluation framework for model and retrieval quality
-  - 90-day execution roadmap with ownership
+  - Opportunity map across user pain, value, and complexity
+  - Feasibility screen across architecture, data, and dependencies
+  - Prioritization scorecard with decision rationale
+  - 90-day product engineering roadmap with owners
 format: Focused sprint (2-3 weeks)
 ctaText: Request scope
 ---
 
-A structured sprint to turn exploratory AI concepts into a prioritized, executable plan.
+A focused sprint for teams that need clarity before committing engineering capacity.

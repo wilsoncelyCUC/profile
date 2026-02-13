@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../../data/site-config';
+import ServiceCard_2 from '../ui/ServiceCard_2.astro';
+
+const services = await getCollection('services');
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
+const { servicesSection } = siteConfig.valuePageV2;
+---
+
+<section id="services" class="v2-section border-b border-slate-700/30" aria-labelledby="services-heading">
+  <div class="v2-shell">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="v2-kicker">Services</p>
+      <h2 id="services-heading" class="v2-title">{servicesSection.title}</h2>
+      <p class="v2-lead">{servicesSection.intro}</p>
+    </div>
+
+    <div class="mt-10 v2-grid lg:grid-cols-3">
+      {sortedServices.map((service) => (
+        <ServiceCard_2 service={service.data} />
+      ))}
+    </div>
+  </div>
+</section>

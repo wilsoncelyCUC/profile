@@ -1,0 +1,80 @@
+---
+import { resolveBookingUrl, siteConfig } from '../../data/site-config';
+
+const navItems = [
+  { label: 'Services', href: '#services' },
+  { label: 'Operating Model', href: '#operating-model' },
+  { label: 'ICP Fit', href: '#icp-fit' },
+  { label: 'Proof', href: '#proof' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const bookingUrl = resolveBookingUrl(siteConfig.bookingUrl);
+---
+
+<header
+  x-data="{ mobileMenuOpen: false, scrolled: false }"
+  x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 24 })"
+  :class="{ 'bg-navy-950/90 border-b border-slate-700/40 backdrop-blur': scrolled, 'bg-transparent': !scrolled }"
+  class="fixed left-0 right-0 top-0 z-50 transition-all duration-300"
+>
+  <nav class="v2-shell">
+    <div class="flex h-20 items-center justify-between">
+      <a href="#hero" class="text-base font-bold tracking-tight text-white sm:text-lg">
+        Wilson Cely
+      </a>
+
+      <div class="hidden items-center gap-6 lg:flex">
+        {navItems.map((item) => (
+          <a href={item.href} class="text-sm font-medium text-slate-300 hover:text-sky-300">
+            {item.label}
+          </a>
+        ))}
+        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="v2-btn-primary px-5 py-2.5 text-sm">
+          Book Discovery Call
+        </a>
+      </div>
+
+      <button
+        @click="mobileMenuOpen = !mobileMenuOpen"
+        class="rounded-md border border-slate-700/70 p-2 text-slate-200 lg:hidden"
+        aria-label="Toggle navigation"
+      >
+        <svg x-show="!mobileMenuOpen" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg x-cloak x-show="mobileMenuOpen" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div
+      x-cloak
+      x-show="mobileMenuOpen"
+      x-transition
+      class="mb-4 rounded-xl border border-slate-700/60 bg-navy-900/95 p-4 lg:hidden"
+    >
+      <div class="space-y-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            @click="mobileMenuOpen = false"
+            class="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-slate-800/60 hover:text-sky-200"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+      <a
+        href={bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        @click="mobileMenuOpen = false"
+        class="v2-btn-primary mt-4 w-full"
+      >
+        Book Discovery Call
+      </a>
+    </div>
+  </nav>
+</header>

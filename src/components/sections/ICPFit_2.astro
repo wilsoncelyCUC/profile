@@ -1,0 +1,37 @@
+---
+import { siteConfig } from '../../data/site-config';
+
+const { icpSegments } = siteConfig.valuePageV2;
+---
+
+<section id="icp-fit" class="v2-section border-b border-slate-700/30" aria-labelledby="icp-fit-heading">
+  <div class="v2-shell">
+    <div class="max-w-3xl">
+      <p class="v2-kicker">ICP Fit</p>
+      <h2 id="icp-fit-heading" class="v2-title">Where this model works best</h2>
+      <p class="v2-lead">
+        Simple qualification for operators who need one person to connect product decisions, engineering execution,
+        and measurable outcomes.
+      </p>
+    </div>
+
+    <div class="mt-10 v2-grid lg:grid-cols-3">
+      {icpSegments.map((segment) => (
+        <article class="v2-card p-6">
+          <h3 class="text-2xl font-semibold text-white">{segment.title}</h3>
+          <p class="mt-2 text-sm text-slate-300">{segment.bestFor}</p>
+
+          <div class="v2-subtle-line mt-5 pt-5">
+            <p class="text-xs uppercase tracking-[0.16em] text-slate-400">Expected outcome</p>
+            <p class="mt-2 text-sm text-slate-200">{segment.outcome}</p>
+          </div>
+
+          <div class="v2-subtle-line mt-5 pt-5">
+            <p class="text-xs uppercase tracking-[0.16em] text-slate-400">Typical trigger</p>
+            <p class="mt-2 text-sm text-slate-300">{segment.trigger}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
