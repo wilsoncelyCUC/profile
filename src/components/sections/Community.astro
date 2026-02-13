@@ -2,6 +2,111 @@
 import { siteConfig } from '../../data/site-config';
 
 const { community } = siteConfig;
+
+type CommunityEvent = {
+  title?: string;
+  date?: string;
+  description?: string;
+  spotsLeft?: string;
+  urgencyText?: string;
+  link?: string;
+  imageUrl?: string;
+};
+
+const LUMA_CALENDAR_URL = 'https://luma.com/munich-mlops';
+
+const cleanText = (value = '') => value.replace(/\s+/g, ' ').trim();
+
+const toAbsoluteUrl = (href?: string) => {
+  if (!href) return undefined;
+  if (href.startsWith('http://') || href.startsWith('https://')) return href;
+  if (href.startsWith('/')) return `https://luma.com${href}`;
+  return undefined;
+};
+
+const formatDate = (isoDate?: string) => {
+  if (!isoDate) return undefined;
+  const parsed = new Date(isoDate);
+  if (Number.isNaN(parsed.getTime())) return undefined;
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(parsed);
+};
+
+const extractEventDataFromHtml = (html: string): Partial<CommunityEvent> | null => {
+  const titleMatch = html.match(/<h3[^>]*>\s*([^<]+?)\s*<\/h3>/i);
+  if (!titleMatch || titleMatch.index === undefined) return null;
+
+  const title = cleanText(titleMatch[1]);
+  const titleIndex = titleMatch.index;
+  const prefix = html.slice(0, titleIndex);
+  const anchorStart = prefix.lastIndexOf('<a');
+  const anchorTagEnd = anchorStart >= 0 ? html.indexOf('>', anchorStart) : -1;
+  const anchorTag =
+    anchorStart >= 0 && anchorTagEnd > anchorStart ? html.slice(anchorStart, anchorTagEnd + 1) : '';
+
+  const hrefMatch = anchorTag.match(/href="([^"]+)"/i);
+  const link = toAbsoluteUrl(cleanText(hrefMatch?.[1] || ''));
+
+  const imageMatch = anchorTag.match(/src="([^"]+)"/i);
+  const imageUrl = imageMatch ? cleanText(imageMatch[1]) : undefined;
+
+  const dateIsoMatch = html.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?/);
+  const date = formatDate(dateIsoMatch?.[0]);
+
+  return {
+    title,
+    link,
+    imageUrl,
+    date,
+  };
+};
+
+const fetchLatestLumaEvent = async (calendarUrl: string): Promise<Partial<CommunityEvent> | null> => {
+  try {
+    const calendarRes = await fetch(calendarUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; WilsonCelySiteBot/1.0)',
+      },
+    });
+    if (!calendarRes.ok) return null;
+
+    const calendarHtml = await calendarRes.text();
+    const eventFromCalendar = extractEventDataFromHtml(calendarHtml);
+    if (!eventFromCalendar?.link) return eventFromCalendar;
+
+    const eventRes = await fetch(eventFromCalendar.link, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; WilsonCelySiteBot/1.0)',
+      },
+    });
+    if (!eventRes.ok) return eventFromCalendar;
+
+    const eventHtml = await eventRes.text();
+    const firstIso = eventHtml.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?/);
+    const eventDate = formatDate(firstIso?.[0]);
+
+    return {
+      ...eventFromCalendar,
+      date: eventDate || eventFromCalendar.date,
+    };
+  } catch {
+    return null;
+  }
+};
+
+const fallbackEvent: CommunityEvent = {
+  ...community?.event,
+  link: community?.event?.link || community?.link || LUMA_CALENDAR_URL,
+};
+
+const lumaEvent = await fetchLatestLumaEvent(community?.link || LUMA_CALENDAR_URL);
+const featuredEvent: CommunityEvent = {
+  ...fallbackEvent,
+  ...lumaEvent,
+};
 ---
 
 <section id="community" class="py-24 bg-bg-light">
@@ -34,31 +139,42 @@ const { community } = siteConfig;
         </div>
 
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-lg bg-white/80 flex items-center justify-center">
-            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-          </div>
+          {
+            featuredEvent?.imageUrl ? (
+              <img
+                src={featuredEvent.imageUrl}
+                alt={featuredEvent.title || 'Munich MLOps event cover'}
+                class="w-10 h-10 rounded-lg object-cover border border-primary/20"
+                loading="lazy"
+              />
+            ) : (
+              <div class="w-10 h-10 rounded-lg bg-white/80 flex items-center justify-center">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+            )
+          }
           <div>
             <span class="text-xs font-semibold text-primary/70 uppercase tracking-wide">Next Event</span>
             <h3 class="text-lg font-bold text-text-dark">
-              {community?.event?.title || "Munich MLOps Meetup #21"}
+              {featuredEvent?.title || "Munich MLOps Meetup #21"}
             </h3>
           </div>
         </div>
 
         <p class="text-sm font-mono font-semibold text-primary mb-2">
-          {community?.event?.date || "Jan 28, 2026"}
+          {featuredEvent?.date || "Jan 28, 2026"}
         </p>
 
         <p class="text-text-dark/80 mb-6 flex-grow">
-          {community?.event?.description || "Gen AI at Scale: From Lambda Struggles to Bedrock Agents"}
+          {featuredEvent?.description || "Gen AI at Scale: From Lambda Struggles to Bedrock Agents"}
         </p>
 
         <div class="flex items-center justify-between">
-          <span class="text-sm text-text-dark/60 font-medium">{community?.event?.spotsLeft || "4 spots left"}</span>
+          <span class="text-sm text-text-dark/60 font-medium">{featuredEvent?.spotsLeft || "4 spots left"}</span>
           <a
-            href={community?.event?.link || "#"}
+            href={featuredEvent?.link || "#"}
             target="_blank"
             rel="noopener noreferrer"
             class="magnetic-btn inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-all group"
