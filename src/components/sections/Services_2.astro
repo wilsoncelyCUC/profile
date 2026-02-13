@@ -87,6 +87,7 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
             aria-controls={`panel-${index}`}
             type="button"
           >
+            <span class="scope-number-badge" aria-hidden="true">{scope.number}</span>
             <div class="scope-visual">
               <span class="scope-node"></span>
               {index < scopes.length - 1 && <span class="scope-line"></span>}
@@ -152,7 +153,7 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
   /* Editorial Header */
   .editorial-header {
     max-width: 48rem;
-    margin: 0 auto 4rem;
+    margin: 0 auto 3rem;
     text-align: center;
   }
 
@@ -168,11 +169,11 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
 
   .editorial-title {
     font-family: 'Inter', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 600;
     line-height: 1.1;
     color: var(--v2-ink);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     letter-spacing: -0.02em;
   }
 
@@ -308,7 +309,7 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
 
   .scopes-title {
     font-family: 'Inter', sans-serif;
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-size: clamp(2rem, 4.5vw, 3rem);
     font-weight: 700;
     color: var(--v2-ink);
     margin-bottom: 1rem;
@@ -345,6 +346,12 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-left: -1px; /* overlap to remove black seam between cells */
+    min-width: 0;
+  }
+
+  .scope-item:first-child {
+    margin-left: 0;
   }
 
   .scope-item:hover {
@@ -371,7 +378,7 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
     height: 16px;
     border-radius: 50%;
     background: var(--v2-accent);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
     position: relative;
     z-index: 2;
     animation: pulse-glow 2s ease-in-out infinite;
@@ -379,17 +386,17 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
 
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
     }
     50% {
-      box-shadow: 0 0 30px rgba(56, 189, 248, 0.9);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
     }
   }
 
   .scope-line {
     position: absolute;
     left: 50%;
-    width: 100%;
+    width: 50%;
     height: 2px;
     background: linear-gradient(90deg, var(--v2-accent) 0%, rgba(56, 189, 248, 0.2) 100%);
     z-index: 1;
@@ -417,6 +424,10 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
     color: var(--v2-ink);
     line-height: 1.3;
     margin: 0;
+  }
+
+  .scope-number-badge {
+    display: none;
   }
 
   /* Scope detail panels (below scopes timeline) */
@@ -538,18 +549,210 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
       padding: 0 1rem 1rem 3rem;
     }
 
+    /* Mobile Scopes Section - Enhanced UX */
+    .scopes-section {
+      margin-bottom: 3rem;
+    }
+
+    .scopes-header {
+      margin-bottom: 2.5rem;
+    }
+
     .scopes-timeline {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.25rem;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .scopes-timeline::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* No scroll on mobile – all scopes visible */
+    .scopes-timeline::after {
+      display: none;
+    }
+
+    .scope-item {
+      min-width: 0;
+      max-width: none;
+      margin-left: 0;
+      padding: 0.5rem 0.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    /* Tap hint for first scope */
+    .scope-item:first-child::before {
+      content: 'Tap to view';
+      position: absolute;
+      top: -1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.625rem;
+      color: rgba(125, 211, 252, 0.6);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      animation: mobile-hint-pulse 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes mobile-hint-pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .scope-item:hover,
+    .scope-item:active {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.06);
+    }
+
+    .scope-item.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow:
+        0 0 0 1px rgba(56, 189, 248, 0.2),
+        0 8px 24px rgba(56, 189, 248, 0.15);
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    /* Downward indicator on active scope */
+    .scope-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -0.625rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--v2-accent);
+      opacity: 0.9;
+      animation: mobile-bounce 1.2s ease-in-out infinite;
+    }
+
+    @keyframes mobile-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(2px); }
     }
 
     .scope-line {
       display: none;
     }
 
+    .scope-visual {
+      display: none;
+    }
+
+    .scope-number {
+      display: none;
+    }
+
+    .scope-number-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      color: var(--v2-accent);
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      margin-bottom: 0.25rem;
+    }
+
+    .scope-item.active .scope-number-badge {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: rgba(56, 189, 248, 0.5);
+    }
+
+    .scope-title {
+      font-size: 0.65rem;
+      line-height: 1.2;
+      font-weight: 600;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Enhanced Panels Section */
     .scope-panels {
-      min-height: 400px;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
+      min-height: auto;
+      margin-top: 2rem;
+      padding-top: 0;
+      border-top: none;
+      position: relative;
+    }
+
+    /* Detail label that appears when panel is active */
+    .scope-panels::before {
+      content: 'Scope Details';
+      display: block;
+      font-size: 0.625rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(125, 211, 252, 0.7);
+      text-align: center;
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .scope-panels.has-active::before {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tab-panel {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      right: 0;
+      transform: translateY(16px) scale(0.98);
+      transition:
+        opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        visibility 0.4s;
+    }
+
+    .tab-panel.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+      top: 0;
+      transform: translateY(0) scale(1);
+      animation: mobile-panel-reveal 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes mobile-panel-reveal {
+      0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      60% {
+        transform: translateY(-4px) scale(1.01);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .tabs-nav {
@@ -579,6 +782,8 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
     const scopeItems = document.querySelectorAll('.scope-item');
     const tabPanels = document.querySelectorAll('.tab-panel');
     const tabButtons = document.querySelectorAll('.tab-button');
+    const scopePanelsContainer = document.querySelector('.scope-panels');
+    const scopesTimeline = document.querySelector('.scopes-timeline');
 
     function setActiveScope(index) {
       scopeItems.forEach((el, i) => {
@@ -593,12 +798,54 @@ const { servicesSection, scopes } = siteConfig.valuePageV2;
         btn.classList.toggle('active', i === index);
         btn.setAttribute('aria-selected', i === index ? 'true' : 'false');
       });
+
+      // Add has-active class for mobile detail label
+      if (scopePanelsContainer) {
+        scopePanelsContainer.classList.add('has-active');
+      }
+    }
+
+    function centerScopeInTimeline(scopeItem) {
+      if (!scopesTimeline || !scopeItem) return;
+
+      const timelineRect = scopesTimeline.getBoundingClientRect();
+      const itemRect = scopeItem.getBoundingClientRect();
+      const scrollLeft = scopesTimeline.scrollLeft;
+
+      // Calculate the position to center the item
+      const itemCenter = itemRect.left - timelineRect.left + (itemRect.width / 2);
+      const timelineCenter = timelineRect.width / 2;
+      const targetScroll = scrollLeft + itemCenter - timelineCenter;
+
+      scopesTimeline.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
     }
 
     scopeItems.forEach((scopeItem) => {
       scopeItem.addEventListener('click', () => {
         const index = parseInt(scopeItem.getAttribute('data-scope') ?? '0', 10);
         setActiveScope(index);
+
+        if (window.matchMedia('(max-width: 768px)').matches) {
+          // Center the clicked scope in the timeline
+          centerScopeInTimeline(scopeItem);
+
+          // Smooth scroll to panels with a slight delay for better UX
+          setTimeout(() => {
+            if (scopePanelsContainer) {
+              const headerOffset = 80;
+              const elementPosition = scopePanelsContainer.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 200);
+        }
       });
     });
   });
