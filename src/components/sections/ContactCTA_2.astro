@@ -14,9 +14,12 @@ const { contact } = siteConfig.valuePageV2;
       <p class="v2-lead mx-auto max-w-2xl">{contact.subtitle}</p>
 
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="v2-btn-primary">
+        <button
+          @click="window.dispatchEvent(new CustomEvent('open-lead-modal'))"
+          class="v2-btn-primary"
+        >
           {contact.primaryCtaText}
-        </a>
+        </button>
         <a href={emailHref} class="v2-btn-secondary">{contact.secondaryCtaText}</a>
       </div>
     </div>

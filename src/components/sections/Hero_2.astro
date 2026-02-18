@@ -26,9 +26,12 @@ const primaryHref = resolveBookingUrl(hero.primaryCta.href);
         </div>
 
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href={primaryHref} target="_blank" rel="noopener noreferrer" class="v2-btn-primary">
+          <button
+            @click="window.dispatchEvent(new CustomEvent('open-lead-modal'))"
+            class="v2-btn-primary"
+          >
             {hero.primaryCta.text}
-          </a>
+          </button>
           <a href={hero.secondaryCta.href} class="v2-btn-secondary">
             {hero.secondaryCta.text}
           </a>
