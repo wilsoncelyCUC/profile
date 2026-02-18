@@ -1,0 +1,414 @@
+---
+// LeadCaptureModal.astro
+// Full-screen typeform-style lead capture modal.
+// Opens via: window.dispatchEvent(new CustomEvent('open-lead-modal'))
+// Saves lead to Supabase on step 5→6 transition.
+// Embeds cal.com inline as step 6.
+---
+
+<div x-data="leadForm()" @keydown.escape.window="close()">
+
+  <!-- Full-screen backdrop -->
+  <div
+    x-show="isOpen"
+    x-cloak
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4"
+    style="background: rgba(7, 11, 20, 0.88); backdrop-filter: blur(8px);"
+    @click.self="close()"
+  >
+
+    <!-- Modal panel -->
+    <div
+      x-show="isOpen"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 scale-95 translate-y-2"
+      x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+      x-transition:leave-end="opacity-0 scale-95 translate-y-2"
+      :class="step === 6 ? 'max-w-3xl' : 'max-w-lg'"
+      class="relative w-full rounded-2xl overflow-hidden"
+      style="background: #0d1526; border: 1px solid rgba(132, 153, 184, 0.18);"
+      @click.stop
+    >
+
+      <!-- Progress bar -->
+      <div class="h-0.5" style="background: rgba(132,153,184,0.15);">
+        <div
+          class="h-full transition-all duration-500 ease-out"
+          style="background: #38bdf8;"
+          :style="`width: ${(step / 6) * 100}%`"
+        ></div>
+      </div>
+
+      <!-- Close button -->
+      <button
+        @click="close()"
+        class="absolute top-4 right-4 z-10 p-2 rounded-lg transition-colors"
+        style="color: #64748b;"
+        aria-label="Close"
+        onmouseover="this.style.color='#f4f7fb'; this.style.background='rgba(255,255,255,0.06)'"
+        onmouseout="this.style.color='#64748b'; this.style.background='transparent'"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Steps 1–5 -->
+      <div x-show="step < 6" class="px-8 pt-8 pb-8">
+
+        <!-- Step counter -->
+        <p
+          class="text-xs tracking-widest uppercase mb-6"
+          style="color: rgba(56,189,248,0.6); font-family: 'JetBrains Mono', monospace;"
+          x-text="`Step ${step} of 5`"
+        ></p>
+
+        <!-- Step 1: Name -->
+        <template x-if="step === 1">
+          <div class="space-y-6">
+            <h2 class="text-2xl font-bold" style="color: #f4f7fb;">What's your name?</h2>
+            <input
+              type="text"
+              x-model="form.name"
+              @keydown.enter="nextStep()"
+              placeholder="Your full name"
+              class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+              style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+              onfocus="this.style.borderBottomColor='#38bdf8'"
+              onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+              x-ref="nameInput"
+              autofocus
+            />
+            <p x-show="errors.name" style="color: #f87171; font-size: 0.875rem;" x-text="errors.name"></p>
+          </div>
+        </template>
+
+        <!-- Step 2: Email -->
+        <template x-if="step === 2">
+          <div class="space-y-6">
+            <h2 class="text-2xl font-bold" style="color: #f4f7fb;">What's your email?</h2>
+            <input
+              type="email"
+              x-model="form.email"
+              @keydown.enter="nextStep()"
+              placeholder="you@company.com"
+              class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+              style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+              onfocus="this.style.borderBottomColor='#38bdf8'"
+              onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+              x-ref="emailInput"
+            />
+            <p x-show="errors.email" style="color: #f87171; font-size: 0.875rem;" x-text="errors.email"></p>
+          </div>
+        </template>
+
+        <!-- Step 3: Company + Role -->
+        <template x-if="step === 3">
+          <div class="space-y-6">
+            <h2 class="text-2xl font-bold" style="color: #f4f7fb;">Your company and role</h2>
+            <div class="space-y-5">
+              <input
+                type="text"
+                x-model="form.company_name"
+                @keydown.enter="$refs.roleInput && $refs.roleInput.focus()"
+                placeholder="Company name"
+                class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+                style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+                onfocus="this.style.borderBottomColor='#38bdf8'"
+                onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+                x-ref="companyInput"
+              />
+              <input
+                type="text"
+                x-model="form.role"
+                @keydown.enter="nextStep()"
+                placeholder="Your title or role"
+                class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+                style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+                onfocus="this.style.borderBottomColor='#38bdf8'"
+                onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+                x-ref="roleInput"
+              />
+            </div>
+            <p x-show="errors.company_name" style="color: #f87171; font-size: 0.875rem;" x-text="errors.company_name"></p>
+          </div>
+        </template>
+
+        <!-- Step 4: Website (optional) -->
+        <template x-if="step === 4">
+          <div class="space-y-6">
+            <div>
+              <h2 class="text-2xl font-bold" style="color: #f4f7fb;">Company website</h2>
+              <p class="mt-1 text-sm" style="color: #9fb0c9;">Optional — helps me research before the call</p>
+            </div>
+            <input
+              type="url"
+              x-model="form.company_website"
+              @keydown.enter="nextStep()"
+              placeholder="https://company.com"
+              class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+              style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+              onfocus="this.style.borderBottomColor='#38bdf8'"
+              onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+            />
+          </div>
+        </template>
+
+        <!-- Step 5: Description -->
+        <template x-if="step === 5">
+          <div class="space-y-6">
+            <h2 class="text-2xl font-bold" style="color: #f4f7fb;">What do you need from me?</h2>
+            <textarea
+              x-model="form.description"
+              placeholder="Describe your situation, the challenge you're facing, or the outcome you want to reach..."
+              rows="4"
+              class="w-full bg-transparent outline-none text-base p-3 rounded-lg transition-colors resize-none"
+              style="border: 1.5px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+              onfocus="this.style.borderColor='#38bdf8'"
+              onblur="this.style.borderColor='rgba(132,153,184,0.35)'"
+            ></textarea>
+            <p x-show="errors.description" style="color: #f87171; font-size: 0.875rem;" x-text="errors.description"></p>
+          </div>
+        </template>
+
+        <!-- Navigation -->
+        <div class="flex items-center justify-between mt-8">
+          <button
+            x-show="step > 1"
+            @click="prevStep()"
+            class="text-sm transition-colors"
+            style="color: #9fb0c9;"
+            onmouseover="this.style.color='#f4f7fb'"
+            onmouseout="this.style.color='#9fb0c9'"
+          >
+            ← Back
+          </button>
+
+          <div class="ml-auto flex items-center gap-3">
+            <!-- Skip only on step 4 -->
+            <button
+              x-show="step === 4"
+              @click="nextStep(true)"
+              class="text-sm transition-colors"
+              style="color: #9fb0c9;"
+              onmouseover="this.style.color='#f4f7fb'"
+              onmouseout="this.style.color='#9fb0c9'"
+            >
+              Skip →
+            </button>
+
+            <button
+              @click="nextStep()"
+              :disabled="loading"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-opacity"
+              style="background: #38bdf8; color: #070b14;"
+              :class="loading ? 'opacity-60 cursor-not-allowed' : 'hover:opacity-90'"
+            >
+              <span x-show="!loading" x-text="step === 5 ? 'Book a Call →' : 'Next →'"></span>
+              <span x-show="loading" class="flex items-center gap-2">
+                <svg class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+                Saving...
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Non-blocking save error -->
+        <p
+          x-show="saveError"
+          class="mt-3 text-xs"
+          style="color: #fbbf24;"
+          x-text="saveError"
+        ></p>
+
+      </div>
+
+      <!-- Step 6: cal.com embed -->
+      <div x-show="step === 6" class="px-8 pt-8 pb-8">
+        <h2 class="text-xl font-bold mb-1" style="color: #f4f7fb;">Pick a time</h2>
+        <p class="text-sm mb-6" style="color: #9fb0c9;">Choose a slot that works for you — you'll get a confirmation email.</p>
+        <div id="cal-inline-container" style="width:100%;height:600px;overflow:scroll;"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  import { createClient } from '@supabase/supabase-js';
+
+  const supabase = createClient(
+    import.meta.env.PUBLIC_SUPABASE_URL,
+    import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+  );
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('leadForm', () => ({
+      isOpen: false,
+      step: 1,
+      loading: false,
+      saveError: null,
+      form: {
+        name: '',
+        email: '',
+        company_name: '',
+        role: '',
+        company_website: '',
+        description: '',
+      },
+      errors: {},
+
+      init() {
+        window.addEventListener('open-lead-modal', () => this.open());
+      },
+
+      open() {
+        this.isOpen = true;
+        this.step = 1;
+        this.form = { name: '', email: '', company_name: '', role: '', company_website: '', description: '' };
+        this.errors = {};
+        this.saveError = null;
+        document.body.style.overflow = 'hidden';
+        this.$nextTick(() => {
+          const first = document.querySelector('[x-ref="nameInput"]');
+          if (first) first.focus();
+        });
+      },
+
+      close() {
+        this.isOpen = false;
+        document.body.style.overflow = '';
+      },
+
+      validate(skip = false) {
+        this.errors = {};
+        if (skip) return true;
+        if (this.step === 1 && !this.form.name.trim()) {
+          this.errors.name = 'Please enter your name.';
+          return false;
+        }
+        if (this.step === 2) {
+          if (!this.form.email.trim()) {
+            this.errors.email = 'Please enter your email.';
+            return false;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) {
+            this.errors.email = 'Please enter a valid email address.';
+            return false;
+          }
+        }
+        if (this.step === 3 && !this.form.company_name.trim()) {
+          this.errors.company_name = 'Please enter your company name.';
+          return false;
+        }
+        if (this.step === 5 && !this.form.description.trim()) {
+          this.errors.description = 'Please describe what you need.';
+          return false;
+        }
+        return true;
+      },
+
+      async nextStep(skip = false) {
+        if (!this.validate(skip)) return;
+        if (this.step === 2) {
+          this.inferCompanyFromEmail();
+        }
+        if (this.step === 5) {
+          await this.saveLead();
+        }
+        this.step++;
+        if (this.step === 6) {
+          this.$nextTick(() => this.initCal());
+        }
+      },
+
+      inferCompanyFromEmail() {
+        const email = this.form.email;
+        if (!email || !email.includes('@')) return;
+        const domain = email.split('@')[1];
+        if (!domain) return;
+
+        const personal = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','me.com','live.com','protonmail.com','aol.com','gmx.com','mail.com'];
+        if (personal.includes(domain.toLowerCase())) return;
+
+        // Company name: first part of domain, split on hyphens, capitalised
+        const companyRaw = domain.split('.')[0];
+        const companyName = companyRaw
+          .split('-')
+          .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(' ');
+
+        if (!this.form.company_name) this.form.company_name = companyName;
+        if (!this.form.company_website) this.form.company_website = `https://${domain}`;
+      },
+
+      prevStep() {
+        if (this.step > 1) this.step--;
+      },
+
+      async saveLead() {
+        this.loading = true;
+        this.saveError = null;
+        try {
+          const { error } = await supabase.from('leads').insert([{
+            name: this.form.name,
+            email: this.form.email,
+            company_name: this.form.company_name || null,
+            role: this.form.role || null,
+            company_website: this.form.company_website || null,
+            description: this.form.description || null,
+          }]);
+          if (error) throw error;
+        } catch (e) {
+          this.saveError = 'Your details could not be saved, but you can still book a call below.';
+        } finally {
+          this.loading = false;
+        }
+      },
+
+      initCal() {
+        if (!document.getElementById('calendly-css')) {
+          const link = document.createElement('link');
+          link.id = 'calendly-css';
+          link.rel = 'stylesheet';
+          link.href = 'https://assets.calendly.com/assets/external/widget.css';
+          document.head.appendChild(link);
+        }
+        if (window.Calendly) {
+          this.setupCal();
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        script.onload = () => this.setupCal();
+        document.head.appendChild(script);
+      },
+
+      setupCal() {
+        Calendly.initInlineWidget({
+          url: 'https://calendly.com/wilson-cely/exore-culture-interview',
+          parentElement: document.getElementById('cal-inline-container'),
+          prefill: {
+            name: this.form.name,
+            email: this.form.email,
+            customAnswers: {
+              a1: this.form.description,
+            },
+          },
+        });
+      },
+    }));
+  });
+</script>
