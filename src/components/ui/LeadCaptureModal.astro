@@ -321,6 +321,9 @@
 
       async nextStep(skip = false) {
         if (!this.validate(skip)) return;
+        if (this.step === 2) {
+          this.inferCompanyFromEmail();
+        }
         if (this.step === 5) {
           await this.saveLead();
         }
@@ -328,6 +331,26 @@
         if (this.step === 6) {
           this.$nextTick(() => this.initCal());
         }
+      },
+
+      inferCompanyFromEmail() {
+        const email = this.form.email;
+        if (!email || !email.includes('@')) return;
+        const domain = email.split('@')[1];
+        if (!domain) return;
+
+        const personal = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','me.com','live.com','protonmail.com','aol.com','gmx.com','mail.com'];
+        if (personal.includes(domain.toLowerCase())) return;
+
+        // Company name: first part of domain, split on hyphens, capitalised
+        const companyRaw = domain.split('.')[0];
+        const companyName = companyRaw
+          .split('-')
+          .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(' ');
+
+        if (!this.form.company_name) this.form.company_name = companyName;
+        if (!this.form.company_website) this.form.company_website = `https://${domain}`;
       },
 
       prevStep() {
@@ -380,6 +403,9 @@
           prefill: {
             name: this.form.name,
             email: this.form.email,
+            customAnswers: {
+              a1: this.form.description,
+            },
           },
         });
       },
