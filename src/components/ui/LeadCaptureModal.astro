@@ -274,20 +274,24 @@
       errors: {},
 
       init() {
-        window.addEventListener('open-lead-modal', () => this.open());
+        window.addEventListener('open-lead-modal', (e) => this.open(e.detail?.service ?? ''));
       },
 
-      open() {
+      open(service = '') {
         this.isOpen = true;
         this.step = 1;
-        this.form = { name: '', email: '', company_name: '', role: '', company_website: '', description: '' };
+        this.form = {
+          name: '',
+          email: '',
+          company_name: '',
+          role: '',
+          company_website: '',
+          description: service ? `I'd like to explore the ${service} scope.\n\n` : '',
+        };
         this.errors = {};
         this.saveError = null;
         document.body.style.overflow = 'hidden';
-        this.$nextTick(() => {
-          const first = document.querySelector('[x-ref="nameInput"]');
-          if (first) first.focus();
-        });
+        this.focusCurrentStep();
       },
 
       close() {
@@ -323,6 +327,13 @@
         return true;
       },
 
+      focusCurrentStep() {
+        this.$nextTick(() => {
+          const el = this.$el.querySelector('input, textarea');
+          if (el) el.focus();
+        });
+      },
+
       async nextStep(skip = false) {
         if (!this.validate(skip)) return;
         if (this.step === 2) {
@@ -334,6 +345,8 @@
         this.step++;
         if (this.step === 6) {
           this.$nextTick(() => this.initCal());
+        } else {
+          this.focusCurrentStep();
         }
       },
 
@@ -358,7 +371,10 @@
       },
 
       prevStep() {
-        if (this.step > 1) this.step--;
+        if (this.step > 1) {
+          this.step--;
+          this.focusCurrentStep();
+        }
       },
 
       async saveLead() {
