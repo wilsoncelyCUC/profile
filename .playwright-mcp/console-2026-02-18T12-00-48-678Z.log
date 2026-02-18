@@ -1,0 +1,358 @@
+[     719ms] Error: supabaseUrl is required.
+    at hn (https://wilsoncelycuc.github.io/profile/_astro/LeadCaptureModal.astro_astro_type_script_index_0_lang.BolTtB08.js:43:39155)
+    at new fn (https://wilsoncelycuc.github.io/profile/_astro/LeadCaptureModal.astro_astro_type_script_index_0_lang.BolTtB08.js:43:39525)
+    at pn (https://wilsoncelycuc.github.io/profile/_astro/LeadCaptureModal.astro_astro_type_script_index_0_lang.BolTtB08.js:43:42813)
+    at https://wilsoncelycuc.github.io/profile/_astro/LeadCaptureModal.astro_astro_type_script_index_0_lang.BolTtB08.js:43:43281
+[     715ms] [WARNING] Alpine Expression Error: leadForm is not defined
+
+Expression: "leadForm()"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     715ms] [WARNING] Alpine Expression Error: isOpen is not defined
+
+Expression: "isOpen"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     715ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 6 ? 'max-w-3xl' : 'max-w-lg'"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     715ms] [WARNING] Alpine Expression Error: isOpen is not defined
+
+Expression: "isOpen"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     715ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "`width: ${(step / 6) * 100}%`"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     715ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step < 6"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     715ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "`Step ${step} of 5`"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 1"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 2"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 3"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 4"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 5"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step > 1"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 4"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: loading is not defined
+
+Expression: "loading"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: loading is not defined
+
+Expression: "loading ? 'opacity-60 cursor-not-allowed' : 'hover:opacity-90'"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: loading is not defined
+
+Expression: "!loading"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 5 ? 'Book a Call →' : 'Next →'"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: loading is not defined
+
+Expression: "loading"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: saveError is not defined
+
+Expression: "saveError"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: saveError is not defined
+
+Expression: "saveError"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     716ms] [WARNING] Alpine Expression Error: step is not defined
+
+Expression: "step === 6"
+
+ JSHandle@node @ https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:0
+[     746ms] ReferenceError: leadForm is not defined
+    at [Alpine] leadForm() (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:16)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at L (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:139)
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34754)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+    at r (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3097)
+    at wr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3107)
+    at C (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:5958)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:5320
+[     746ms] ReferenceError: isOpen is not defined
+    at [Alpine] isOpen (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     747ms] ReferenceError: step is not defined
+    at [Alpine] step === 6 ? 'max-w-3xl' : 'max-w-lg' (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34228
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Kn (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34222)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     747ms] ReferenceError: isOpen is not defined
+    at [Alpine] isOpen (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     747ms] ReferenceError: step is not defined
+    at [Alpine] `width: ${(step / 6) * 100}%` (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:43)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34228
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Kn (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34222)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     747ms] ReferenceError: step is not defined
+    at [Alpine] step < 6 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     747ms] ReferenceError: step is not defined
+    at [Alpine] `Step ${step} of 5` (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:40)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:33732
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:33725)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     748ms] ReferenceError: step is not defined
+    at [Alpine] step === 1 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39158
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39152)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     748ms] ReferenceError: step is not defined
+    at [Alpine] step === 2 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39158
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39152)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     748ms] ReferenceError: step is not defined
+    at [Alpine] step === 3 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39158
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39152)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     749ms] ReferenceError: step is not defined
+    at [Alpine] step === 4 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39158
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39152)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     749ms] ReferenceError: step is not defined
+    at [Alpine] step === 5 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39158
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:39152)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     749ms] ReferenceError: step is not defined
+    at [Alpine] step > 1 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     750ms] ReferenceError: step is not defined
+    at [Alpine] step === 4 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     750ms] ReferenceError: loading is not defined
+    at [Alpine] loading (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34228
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Kn (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34222)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     750ms] ReferenceError: loading is not defined
+    at [Alpine] loading ? 'opacity-60 cursor-not-allowed' : 'hover:opacity-90' (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34228
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Kn (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:34222)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     753ms] ReferenceError: loading is not defined
+    at [Alpine] !loading (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:33)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     754ms] ReferenceError: step is not defined
+    at [Alpine] step === 5 ? 'Book a Call →' : 'Next →' (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:33732
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:33725)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     754ms] ReferenceError: loading is not defined
+    at [Alpine] loading (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     754ms] ReferenceError: saveError is not defined
+    at [Alpine] saveError (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     754ms] ReferenceError: saveError is not defined
+    at [Alpine] saveError (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:33732
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:33725)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[     754ms] ReferenceError: step is not defined
+    at [Alpine] step === 6 (eval at <anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:734), <anonymous>:3:32)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:1149
+    at lr (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:4948)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35663
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:19015)
+    at Object.xi [as effect] (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:18801)
+    at z (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:392)
+    at https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:1:505
+    at Function.<anonymous> (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:35657)
+    at n (https://wilsoncelycuc.github.io/profile/_astro/page.C5bFeOsj.js:5:3067)
+[    1514ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://wilsoncelycuc.github.io/favicon.ico:0

@@ -1,0 +1,3 @@
+[    7309ms] [WARNING] [Warning] Please install/enable Redux devtools extension @ https://frontend-assets.supabase.com/studio/48e4140202d0/_next/static/chunks/910b91a653c19115.js?dpl=dpl_rk8FHQscUAuPcNsMghdapkq8Y7WQ:5
+[   14598ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.supabase.com/platform/auth/_/config:0
+[   14598ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.supabase.com/platform/projects/_/config/storage:0
