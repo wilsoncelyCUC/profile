@@ -59,13 +59,11 @@ bookingUrl.searchParams.set('service', service.slug);
     <p class="font-medium text-slate-400">Format: {service.format}</p>
   </div>
 
-  <a
-    href={bookingUrl.toString()}
-    target="_blank"
-    rel="noopener noreferrer"
+  <button
+    onclick="window.dispatchEvent(new CustomEvent('open-lead-modal'))"
     class="btn-primary mt-8 w-full"
     aria-label={`Request scope for ${service.title}`}
   >
     {service.ctaText}
-  </a>
+  </button>
 </article>

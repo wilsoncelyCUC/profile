@@ -25,9 +25,9 @@ const bookingUrl = resolveBookingUrl(siteConfig.hero.primaryCta.href);
         {navItems.map((item) => (
           <a href={item.href} class="text-sm font-medium text-slate-300 hover:text-cyan-400">{item.label}</a>
         ))}
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="btn-primary px-5 py-2.5 text-sm">
+        <button onclick="window.dispatchEvent(new CustomEvent('open-lead-modal'))" class="btn-primary px-5 py-2.5 text-sm">
           Book a Discovery Call
-        </a>
+        </button>
       </div>
 
       <button
@@ -59,15 +59,13 @@ const bookingUrl = resolveBookingUrl(siteConfig.hero.primaryCta.href);
           {item.label}
         </a>
       ))}
-      <a
-        href={bookingUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        onclick="window.dispatchEvent(new CustomEvent('open-lead-modal'))"
         @click="mobileMenuOpen = false"
         class="btn-primary mt-2 w-full"
       >
         Book a Discovery Call
-      </a>
+      </button>
     </div>
   </nav>
 </header>

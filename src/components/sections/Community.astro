@@ -34,9 +34,9 @@ const sponsorLink = resolveBookingUrl(community.sponsor.link);
         <h3 class="text-2xl font-semibold">{community.sponsor.title}</h3>
         <p class="mt-4 text-sm text-slate-300">{community.sponsor.description}</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href={sponsorLink} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <button onclick="window.dispatchEvent(new CustomEvent('open-lead-modal'))" class="btn-secondary">
             {community.sponsor.cta}
-          </a>
+          </button>
           <a href={community.link} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-cyan-400">
             Join community
           </a>
