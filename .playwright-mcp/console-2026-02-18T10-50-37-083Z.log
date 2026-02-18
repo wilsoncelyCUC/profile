@@ -1,0 +1,6 @@
+[   42647ms] Uncaught Error: Cal is not defined. This shouldn't happen
+    at <anonymous> (https://app.cal.com/embed/embed.js:220:48107)
+    at <anonymous> (https://app.cal.com/embed/embed.js:228:1)
+[   42648ms] ReferenceError: Cal is not defined
+    at Proxy.setupCal (http://localhost:4321/src/components/ui/LeadCaptureModal.astro?astro&type=script&index=0&lang.ts:110:7)
+    at script.onload (http://localhost:4321/src/components/ui/LeadCaptureModal.astro?astro&type=script&index=0&lang.ts:106:34)

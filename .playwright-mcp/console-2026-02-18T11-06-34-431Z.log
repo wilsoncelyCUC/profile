@@ -1,0 +1,8 @@
+[   54849ms] [WARNING] Datadog Browser SDK: No storage available for session. We will not send any data. @ https://assets.calendly.com/assets/booking/js/booking-50f14d7a4.js:59
+[   57183ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://calendly.com/api/booking/event_types/67634e27-1ae3-44a1-8c25-da2f8ab0c882/calendar/range?timezone=Europe%2FBerlin&diagnostics=false&range_start=2026-02-18&range_end=2026-02-28&embed_domain=localhost%3A4321&embed_type=Inline&scheduling_link_uuid=ytd-wtv-q9b:0
+[  756796ms] [ERROR] WebSocket connection to 'ws://localhost:4321/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4321/@vite/client:1766
+[  759187ms] [ERROR] %cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch @ http://localhost:4321/node_modules/astro/dist/runtime/client/dev-toolbar/settings.js?v=7dbe4d9d:17
+[  834314ms] [ERROR] WebSocket connection to 'ws://localhost:4321/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:4321/@vite/client:1766
+[ 1491474ms] [WARNING] Datadog Browser SDK: No storage available for session. We will not send any data. @ https://assets.calendly.com/assets/booking/js/booking-50f14d7a4.js:59
+[ 1749551ms] [WARNING] Datadog Browser SDK: No storage available for session. We will not send any data. @ https://assets.calendly.com/assets/booking/js/booking-50f14d7a4.js:59
+[ 1897739ms] [WARNING] Datadog Browser SDK: No storage available for session. We will not send any data. @ https://assets.calendly.com/assets/booking/js/booking-50f14d7a4.js:59
