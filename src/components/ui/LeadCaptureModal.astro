@@ -355,30 +355,32 @@
       },
 
       initCal() {
-        if (window.Cal) {
+        if (!document.getElementById('calendly-css')) {
+          const link = document.createElement('link');
+          link.id = 'calendly-css';
+          link.rel = 'stylesheet';
+          link.href = 'https://assets.calendly.com/assets/external/widget.css';
+          document.head.appendChild(link);
+        }
+        if (window.Calendly) {
           this.setupCal();
           return;
         }
         const script = document.createElement('script');
-        script.src = 'https://app.cal.com/embed/embed.js';
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
         script.onload = () => this.setupCal();
         document.head.appendChild(script);
       },
 
       setupCal() {
-        Cal('init', { origin: 'https://app.cal.com' });
-        Cal('inline', {
-          elementOrSelector: '#cal-inline-container',
-          calLink: 'wilsoncely/discovery-call',
-          config: {
+        Calendly.initInlineWidget({
+          url: 'https://calendly.com/wilson-cely/exore-culture-interview',
+          parentElement: document.getElementById('cal-inline-container'),
+          prefill: {
             name: this.form.name,
             email: this.form.email,
           },
-        });
-        Cal('ui', {
-          styles: { branding: { brandColor: '#38bdf8' } },
-          hideEventTypeDetails: false,
-          layout: 'month_view',
         });
       },
     }));

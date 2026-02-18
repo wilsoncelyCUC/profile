@@ -15,7 +15,7 @@ const { contact } = siteConfig.valuePageV2;
 
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
         <button
-          @click="window.dispatchEvent(new CustomEvent('open-lead-modal'))"
+          onclick="window.dispatchEvent(new CustomEvent('open-lead-modal'))"
           class="v2-btn-primary"
         >
           {contact.primaryCtaText}
