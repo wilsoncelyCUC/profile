@@ -4,6 +4,9 @@
 // Opens via: window.dispatchEvent(new CustomEvent('open-lead-modal'))
 // Saves lead to Supabase on step 5→6 transition.
 // Embeds cal.com inline as step 6.
+//
+// TODO: Consider adding analytics events (e.g. Plausible/PostHog) on each
+// step transition to track funnel drop-off and conversion rate.
 ---
 
 <div x-data="leadForm()" @keydown.escape.window="close()">
