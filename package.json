@@ -13,6 +13,7 @@
     "@astrojs/alpinejs": "^0.4.0",
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/tailwind": "^6.0.0",
+    "@supabase/supabase-js": "^2.96.0",
     "@types/alpinejs": "^3.13.0",
     "alpinejs": "^3.14.0",
     "astro": "^5.0.0",
