@@ -72,15 +72,13 @@ bookingUrl.searchParams.set('service', service.slug);
     </div>
   </div>
 
-  <a
-    href={bookingUrl.toString()}
-    target="_blank"
-    rel="noopener noreferrer"
+  <button
+    onclick="window.dispatchEvent(new CustomEvent('open-lead-modal'))"
     class="card-cta-button v2-btn-primary w-full"
     aria-label={`Request scope for ${service.title}`}
   >
     {service.ctaText}
-  </a>
+  </button>
 
   {scopeNumber && (
     <div class="scope-image-sidebar">

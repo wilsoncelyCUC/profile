@@ -1,6 +1,7 @@
 ---
 import BaseHead from '../components/layout/BaseHead.astro';
 import Header from '../components/layout/Header.astro';
+import LeadCaptureModal from '../components/ui/LeadCaptureModal.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -28,5 +29,6 @@ const { title, description, canonicalPath } = Astro.props;
     <footer class="border-t border-navy-800 bg-navy-950 py-8 text-center text-sm text-slate-400">
       <p>&copy; {new Date().getFullYear()} Wilson Cely. All rights reserved.</p>
     </footer>
+    <LeadCaptureModal />
   </body>
 </html>
