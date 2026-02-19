@@ -1,26 +1,81 @@
 ---
 import { siteConfig } from '../../data/site-config';
+import { getNewsletterFeed } from '../../lib/newsletter-feed';
 
 const { newsletter } = siteConfig;
+const latestArticles = await getNewsletterFeed();
 ---
 
 <section id="newsletter" class="section-shell border-b border-navy-800 py-20">
   <div class="content-shell">
-    <div class="surface-card mx-auto max-w-4xl p-8 text-center lg:p-12">
-      <p class="font-mono text-sm uppercase tracking-[0.2em] text-cyan-400">Newsletter</p>
-      <h2 class="mt-4 text-3xl font-bold sm:text-4xl">{newsletter.headline}</h2>
-      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">{newsletter.description}</p>
+    <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="surface-card p-8 text-center lg:p-12">
+        <p class="font-mono text-sm uppercase tracking-[0.2em] text-cyan-400">Newsletter</p>
+        <h2 class="mt-4 text-3xl font-bold sm:text-4xl">{newsletter.headline}</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">{newsletter.description}</p>
 
-      <div class="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-900/20 px-4 py-2">
-        <span class="font-mono text-lg font-bold text-cyan-400">{newsletter.subscribersShort}</span>
-        <span class="text-sm text-slate-300">subscribers</span>
+        <div class="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-cyan-900/20 px-4 py-2">
+          <span class="font-mono text-lg font-bold text-cyan-400">{newsletter.subscribersShort}</span>
+          <span class="text-sm text-slate-300">subscribers</span>
+        </div>
+
+        <p class="mx-auto mt-5 max-w-xl text-sm text-slate-400">{newsletter.socialProof}</p>
+
+        <a href={newsletter.link} target="_blank" rel="noopener noreferrer" class="btn-primary mt-8">
+          {newsletter.ctaText}
+        </a>
       </div>
 
-      <p class="mx-auto mt-5 max-w-xl text-sm text-slate-400">{newsletter.socialProof}</p>
+      <div class="surface-card p-6 lg:p-8">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan-400">Latest from the newsletter</p>
+        <h3 class="mt-3 text-2xl font-bold">10 Recent Articles</h3>
+        <p class="mt-2 text-sm text-slate-400">Practical notes and field lessons from AI product delivery.</p>
 
-      <a href={newsletter.link} target="_blank" rel="noopener noreferrer" class="btn-primary mt-8">
-        {newsletter.ctaText}
-      </a>
+        {
+          latestArticles.length > 0 ? (
+            <div class="mt-6 h-[24rem] space-y-3 overflow-y-auto pr-1">
+              {latestArticles.map((article) => (
+                <a
+                  href={article.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="newsletter-item block rounded-lg border border-navy-700 bg-navy-900/70 p-4 transition hover:border-cyan-500/60 hover:bg-navy-900"
+                >
+                  <p class="newsletter-title text-base font-semibold text-white">{article.title}</p>
+                  <p class="mt-2 text-sm text-slate-300 newsletter-excerpt">{article.excerpt || 'Open article'}</p>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="mt-6 rounded-lg border border-amber-500/30 bg-amber-900/20 p-4 text-left">
+              <p class="text-sm text-slate-200">Latest posts are temporarily unavailable.</p>
+              <a
+                href={newsletter.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center text-sm font-semibold text-cyan-400 hover:text-cyan-300"
+              >
+                Visit the newsletter
+              </a>
+            </div>
+          )
+        }
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .newsletter-title {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .newsletter-excerpt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
