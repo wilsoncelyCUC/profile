@@ -1,0 +1,320 @@
+---
+---
+
+<div x-data="communityHostForm()" @keydown.escape.window="close()">
+
+  <!-- Full-screen backdrop -->
+  <div
+    x-show="isOpen"
+    x-cloak
+    data-testid="community-host-modal"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4"
+    style="background: rgba(7, 11, 20, 0.88); backdrop-filter: blur(8px);"
+    @click.self="close()"
+  >
+
+    <!-- Modal panel -->
+    <div
+      x-show="isOpen"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 scale-95 translate-y-2"
+      x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+      x-transition:leave-end="opacity-0 scale-95 translate-y-2"
+      class="relative w-full max-w-lg rounded-2xl overflow-hidden"
+      style="background: #0d1526; border: 1px solid rgba(132, 153, 184, 0.18);"
+      @click.stop
+    >
+
+      <!-- Progress bar -->
+      <div class="h-0.5" style="background: rgba(132,153,184,0.15);">
+        <div
+          class="h-full transition-all duration-500 ease-out"
+          style="background: #38bdf8;"
+          :style="`width: ${(step / 3) * 100}%`"
+        ></div>
+      </div>
+
+      <!-- Close button -->
+      <button
+        @click="close()"
+        class="absolute top-4 right-4 z-10 p-2 rounded-lg transition-colors"
+        style="color: #64748b;"
+        aria-label="Close"
+        onmouseover="this.style.color='#f4f7fb'; this.style.background='rgba(255,255,255,0.06)'"
+        onmouseout="this.style.color='#64748b'; this.style.background='transparent'"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Steps 1-3 -->
+      <div x-show="!submitted" class="px-8 pt-8 pb-8">
+
+        <!-- Step counter -->
+        <p
+          class="text-xs tracking-widest uppercase mb-6"
+          style="color: rgba(56,189,248,0.6); font-family: 'JetBrains Mono', monospace;"
+          x-text="`Step ${step} of 3`"
+        ></p>
+
+        <!-- Step 1: Full name -->
+        <template x-if="step === 1">
+          <div class="space-y-6">
+            <h2 class="text-2xl font-bold" style="color: #f4f7fb;">What's your name?</h2>
+            <input
+              type="text"
+              x-model="form.full_name"
+              @keydown.enter="nextStep()"
+              placeholder="Your full name"
+              class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+              style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+              onfocus="this.style.borderBottomColor='#38bdf8'"
+              onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+            />
+            <p x-show="errors.full_name" style="color: #f87171; font-size: 0.875rem;" x-text="errors.full_name"></p>
+          </div>
+        </template>
+
+        <!-- Step 2: Email -->
+        <template x-if="step === 2">
+          <div class="space-y-6">
+            <h2 class="text-2xl font-bold" style="color: #f4f7fb;">What's your email?</h2>
+            <input
+              type="email"
+              x-model="form.email"
+              @keydown.enter="nextStep()"
+              placeholder="you@company.com"
+              class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+              style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+              onfocus="this.style.borderBottomColor='#38bdf8'"
+              onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+            />
+            <p x-show="errors.email" style="color: #f87171; font-size: 0.875rem;" x-text="errors.email"></p>
+          </div>
+        </template>
+
+        <!-- Step 3: Phone -->
+        <template x-if="step === 3">
+          <div class="space-y-6">
+            <div>
+              <h2 class="text-2xl font-bold" style="color: #f4f7fb;">Phone number</h2>
+              <p class="mt-1 text-sm" style="color: #9fb0c9;">Optional. We'll only use it to coordinate.</p>
+            </div>
+            <input
+              type="tel"
+              x-model="form.phone_number"
+              @keydown.enter="nextStep()"
+              placeholder="+49 123 456 7890"
+              class="w-full bg-transparent outline-none text-xl pb-2 transition-colors"
+              style="border-bottom: 2px solid rgba(132,153,184,0.35); color: #f4f7fb;"
+              onfocus="this.style.borderBottomColor='#38bdf8'"
+              onblur="this.style.borderBottomColor='rgba(132,153,184,0.35)'"
+            />
+          </div>
+        </template>
+
+        <!-- Navigation -->
+        <div class="flex items-center justify-between mt-8">
+          <button
+            x-show="step > 1"
+            @click="prevStep()"
+            class="text-sm transition-colors"
+            style="color: #9fb0c9;"
+            onmouseover="this.style.color='#f4f7fb'"
+            onmouseout="this.style.color='#9fb0c9'"
+          >
+            Back
+          </button>
+
+          <div class="ml-auto flex items-center gap-3">
+            <!-- Skip only on step 3 (phone optional) -->
+            <button
+              x-show="step === 3"
+              @click="submit(true)"
+              class="text-sm transition-colors"
+              style="color: #9fb0c9;"
+              onmouseover="this.style.color='#f4f7fb'"
+              onmouseout="this.style.color='#9fb0c9'"
+            >
+              Skip
+            </button>
+
+            <button
+              @click="nextStep()"
+              :disabled="loading"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-opacity"
+              style="background: #38bdf8; color: #070b14;"
+              :class="loading ? 'opacity-60 cursor-not-allowed' : 'hover:opacity-90'"
+            >
+              <span x-show="!loading" x-text="step === 3 ? 'Submit' : 'Next'"></span>
+              <span x-show="loading" class="flex items-center gap-2">
+                <svg class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+                Saving...
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Non-blocking save error -->
+        <p
+          x-show="saveError"
+          class="mt-3 text-xs"
+          style="color: #fbbf24;"
+          x-text="saveError"
+        ></p>
+
+      </div>
+
+      <!-- Success state -->
+      <div
+        x-show="submitted"
+        data-testid="community-host-success"
+        class="px-8 pt-8 pb-8 text-center"
+      >
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full mb-6" style="background: rgba(56,189,248,0.12);">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold mb-2" style="color: #f4f7fb;">We'll be in touch</h2>
+        <p class="text-sm mb-8" style="color: #9fb0c9;">
+          Thanks for your interest in the Munich MLOps community. We'll reach out shortly.
+        </p>
+        <button
+          @click="close()"
+          class="px-5 py-2.5 rounded-lg font-semibold text-sm"
+          style="background: rgba(56,189,248,0.12); color: #38bdf8;"
+          onmouseover="this.style.background='rgba(56,189,248,0.2)'"
+          onmouseout="this.style.background='rgba(56,189,248,0.12)'"
+        >
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  import { createClient } from '@supabase/supabase-js';
+
+  const _supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const _supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = _supabaseUrl && _supabaseKey
+    ? createClient(_supabaseUrl, _supabaseKey)
+    : null;
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('communityHostForm', () => ({
+      isOpen: false,
+      step: 1,
+      loading: false,
+      submitted: false,
+      saveError: null,
+      form: {
+        full_name: '',
+        email: '',
+        phone_number: '',
+      },
+      errors: {},
+
+      init() {
+        window.addEventListener('open-community-host-modal', () => this.open());
+      },
+
+      open() {
+        this.isOpen = true;
+        this.step = 1;
+        this.submitted = false;
+        this.loading = false;
+        this.saveError = null;
+        this.form = { full_name: '', email: '', phone_number: '' };
+        this.errors = {};
+        document.body.style.overflow = 'hidden';
+        this.$nextTick(() => {
+          const el = this.$el.querySelector('input');
+          if (el) el.focus();
+        });
+      },
+
+      close() {
+        this.isOpen = false;
+        document.body.style.overflow = '';
+      },
+
+      validate() {
+        this.errors = {};
+        if (this.step === 1 && !this.form.full_name.trim()) {
+          this.errors.full_name = 'Please enter your name.';
+          return false;
+        }
+        if (this.step === 2) {
+          if (!this.form.email.trim()) {
+            this.errors.email = 'Please enter your email.';
+            return false;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) {
+            this.errors.email = 'Please enter a valid email address.';
+            return false;
+          }
+        }
+        return true;
+      },
+
+      prevStep() {
+        if (this.step > 1) {
+          this.step--;
+          this.$nextTick(() => {
+            const el = this.$el.querySelector('input');
+            if (el) el.focus();
+          });
+        }
+      },
+
+      nextStep() {
+        if (!this.validate()) return;
+        if (this.step < 3) {
+          this.step++;
+          this.$nextTick(() => {
+            const el = this.$el.querySelector('input');
+            if (el) el.focus();
+          });
+        } else {
+          this.submit(false);
+        }
+      },
+
+      async submit(skipPhone = false) {
+        this.loading = true;
+        this.saveError = null;
+        try {
+          if (supabase) {
+            const { error } = await supabase.from('community_hosts').insert([{
+              full_name: this.form.full_name,
+              email: this.form.email,
+              phone_number: skipPhone ? null : (this.form.phone_number.trim() || null),
+            }]);
+            if (error) throw error;
+          }
+        } catch (e) {
+          this.saveError = 'Your details could not be saved, but we got your interest.';
+        } finally {
+          this.loading = false;
+          this.submitted = true;
+        }
+      },
+    }));
+  });
+</script>
