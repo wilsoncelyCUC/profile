@@ -42,12 +42,13 @@ test.describe('Community Host Modal', () => {
       window.dispatchEvent(new CustomEvent('open-community-host-modal'));
     });
 
-    await expect(page.getByTestId('community-host-modal')).toBeVisible();
+    const modal = page.getByTestId('community-host-modal');
+    await expect(modal).toBeVisible();
 
     // Click Next without typing anything
-    await page.getByRole('button', { name: /Next/i }).click();
+    await modal.getByRole('button', { name: /Next/i }).click();
 
-    await expect(page.getByText('Please enter your name.')).toBeVisible();
+    await expect(modal.getByText('Please enter your name.')).toBeVisible();
   });
 
   test('blocks submit when email is invalid', async ({ page }) => {
@@ -57,7 +58,7 @@ test.describe('Community Host Modal', () => {
 
     const modal = page.getByTestId('community-host-modal');
 
-    // Step 1: valid name (scope inside modal to avoid conflict with LeadCaptureModal)
+    // Step 1: valid name
     await modal.getByPlaceholder('Your full name').fill('Jane Smith');
     await modal.getByRole('button', { name: /Next/i }).click();
 
@@ -75,7 +76,7 @@ test.describe('Community Host Modal', () => {
 
     const modal = page.getByTestId('community-host-modal');
 
-    // Step 1: name (scope inside modal to avoid conflict with LeadCaptureModal)
+    // Step 1: name
     await modal.getByPlaceholder('Your full name').fill('Jane Smith');
     await modal.getByRole('button', { name: /Next/i }).click();
 
