@@ -90,4 +90,30 @@ test.describe('Community Host Modal', () => {
     // Success state
     await expect(page.getByTestId('community-host-success')).toBeVisible();
   });
+
+  test('E2E: open from Start a conversation, fill all steps and submit', async ({ page }) => {
+    await page.getByRole('button', { name: /Start a conversation/i }).click();
+
+    const modal = page.getByTestId('community-host-modal');
+    await expect(modal).toBeVisible();
+
+    // Step 1: name
+    await expect(modal.getByRole('heading', { name: /What's your name\?/i })).toBeVisible();
+    await modal.getByPlaceholder('Your full name').fill('E2E Test User');
+    await modal.getByRole('button', { name: /Next/i }).click();
+
+    // Step 2: email
+    await expect(modal.getByRole('heading', { name: /What's your email\?/i })).toBeVisible();
+    await modal.getByPlaceholder('you@company.com').fill('e2e@example.com');
+    await modal.getByRole('button', { name: /Next/i }).click();
+
+    // Step 3: phone and submit
+    await expect(modal.getByRole('heading', { name: /Phone number/i })).toBeVisible();
+    await modal.getByPlaceholder('+49 123 456 7890').fill('+49 123 456 7890');
+    await modal.getByRole('button', { name: /Submit/i }).click();
+
+    await expect(page.getByTestId('community-host-success')).toBeVisible();
+    await expect(modal.getByText(/We'll be in touch/i)).toBeVisible();
+    await expect(modal.getByText(/Thanks for your interest in the Munich MLOps community/i)).toBeVisible();
+  });
 });
