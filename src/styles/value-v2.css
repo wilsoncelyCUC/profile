@@ -286,4 +286,8 @@
   .v2-phase-node {
     animation: none;
   }
+
+  .hero-video-embed {
+    display: none;
+  }
 }
