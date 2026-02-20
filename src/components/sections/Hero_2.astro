@@ -52,12 +52,21 @@ const primaryHref = resolveBookingUrl(hero.primaryCta.href);
           <span>Product Engineering</span>
           <span>Outcome Ownership</span>
         </div>
-        <img
-          src="/images/wilson-hero.png"
-          alt="Wilson Cely"
-          class="mt-8 h-full w-full rounded-xl object-cover"
-          loading="eager"
-        />
+        <div class="relative mt-8 aspect-[4/3] min-h-[240px] w-full overflow-hidden rounded-xl lg:max-w-[420px] lg:min-h-[320px]">
+          <img
+            src="/images/wilson-hero-new.png"
+            alt="Wilson Cely"
+            class="absolute inset-0 h-full w-full rounded-xl object-cover"
+            loading="eager"
+          />
+          <iframe
+            class="hero-video-embed absolute inset-0 h-full w-full rounded-xl"
+            src="https://www.youtube.com/embed/F0dNWUdFxhU?autoplay=1&mute=1&loop=1&playlist=F0dNWUdFxhU"
+            title="Hero video"
+            allow="autoplay"
+            loading="eager"
+          />
+        </div>
       </aside>
     </div>
   </div>
