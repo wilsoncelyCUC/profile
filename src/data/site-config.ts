@@ -362,7 +362,7 @@ export const siteConfig = {
   seo: {
     openGraph: {
       type: 'website',
-      image: '/profile/images/profile_wct.jpeg',
+      image: '/images/profile_wct.jpeg',
     },
   },
 };

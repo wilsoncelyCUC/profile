@@ -4,8 +4,7 @@ import mdx from '@astrojs/mdx';
 import alpinejs from '@astrojs/alpinejs';
 
 export default defineConfig({
-  site: 'https://wilsoncelycuc.github.io',
-  base: '/profile',
+  site: 'https://exore.net',
   integrations: [
     tailwind(),
     mdx(),
