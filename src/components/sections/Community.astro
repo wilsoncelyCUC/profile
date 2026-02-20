@@ -22,10 +22,8 @@ const sponsorLink = resolveBookingUrl(community.sponsor.link);
           <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>{community.event.urgencyText}
         </div>
         <h3 class="text-2xl font-semibold">{community.event.title}</h3>
-        <p class="mt-2 font-mono text-sm text-cyan-400">{community.event.date}</p>
         <p class="mt-4 text-sm text-slate-300">{community.event.description}</p>
-        <div class="mt-6 flex items-center justify-between gap-4">
-          <span class="text-sm text-slate-400">{community.event.spotsLeft}</span>
+        <div class="mt-6">
           <a href={community.event.link} target="_blank" rel="noopener noreferrer" class="btn-primary">RSVP</a>
         </div>
       </article>
