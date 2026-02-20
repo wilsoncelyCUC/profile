@@ -1,14 +1,15 @@
 export const siteConfig = {
-  title: 'Wilson Cely | AI Productization for Enterprises',
-  description: 'I turn AI prototypes into production systems for enterprises where the stakes are real.',
+  title: 'Wilson Cely | Product Engineering for Outcome-Critical Teams',
+  description:
+    'Product engineering for SMEs, startups, and enterprise teams that need end-to-end ownership from discovery to measurable outcomes.',
   author: 'Wilson Cely',
   email: 'wcely@exore.net',
   bookingUrl: 'https://cal.com/wilsoncely/discovery-call',
   valuePageV2: {
     seo: {
-      title: 'Wilson Cely | Product Engineer for Outcome-Critical Teams',
+      title: 'Wilson Cely | Product Engineering for Outcome-Critical Teams',
       description:
-        'Product engineering for SMEs, fast startups, and enterprise innovation teams that need to move from prototype momentum to measurable product outcomes.',
+        'Product engineering for SMEs, fast startups, and enterprise innovation teams that need one accountable owner from prototype momentum to measurable product outcomes.',
     },
     hero: {
       kicker: 'Product Engineering',
@@ -332,11 +333,9 @@ export const siteConfig = {
     link: 'https://lu.ma/munich-mlops',
     event: {
       title: 'Munich MLOps Meetup',
-      date: 'Jan 28, 2026',
-      description: 'Gen AI at Scale: from experimentation bottlenecks to production agents.',
-      spotsLeft: '4 spots left',
-      urgencyText: 'Seats Filling Fast',
-      link: 'https://lu.ma/munich-mlops?e=calev-ddS9tD5XOnzMJM4',
+      description: 'Monthly gathering of ML practitioners and AI builders in Munich.',
+      urgencyText: 'Monthly Meetup',
+      link: 'https://lu.ma/munich-mlops',
     },
     sponsor: {
       title: 'Become a Sponsor',
