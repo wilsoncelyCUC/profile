@@ -9,7 +9,7 @@ try {
   const files = await readdir(customersDir);
   logos = files
     .filter((file) => /\.(png|jpg|jpeg|svg|webp)$/i.test(file))
-    .map((file) => `/profile/images/customers/${file}`);
+    .map((file) => `/images/customers/${file}`);
 } catch {
   logos = [];
 }
