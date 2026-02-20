@@ -316,7 +316,8 @@ export const siteConfig = {
   },
 
   newsletter: {
-    headline: 'Signal Over Noise',
+    headline: 'The AI Rev Hub',
+    headlineSuffix: 'Newsletter',
     description: 'Practical AI productization insights for operators shipping in real enterprise conditions.',
     subscribersShort: '15K+',
     socialProof: 'Read by builders, engineering leaders, and applied AI teams.',
